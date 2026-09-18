@@ -1,0 +1,40 @@
+---
+# Runs PingCastle's Active Directory health check from a domain-joined
+# Windows host (over WinRM) and fetches its XML risk report back. This is
+# the primary source of Identity-pillar Zero Trust evidence for on-prem AD -
+# PingCastle's own risk rules are pre-tagged by category (Stale Objects,
+# Privileged Accounts, Trusts, Anomalies) which report.py rolls into the
+# Identity pillar, and several rules already carry MITRE ATT&CK technique
+# references that the parser picks up when present.
+
+- name: Ensure results directory exists on the PingCastle host
+  ansible.windows.win_file:
+    path: "C:\\ansible_results\\pingcastle"
+    state: directory
+
+- name: Run PingCastle healthcheck against the domain
+  ansible.windows.win_shell: >
+    cd C:\ansible_results\pingcastle;
+    & "{{ pingcastle_exe_path }}" --healthcheck --server {{ ad_domain }} --no-enum-limit
+  register: pingcastle_run
+  ignore_errors: true   # PingCastle's exit codes are not consistently 0-on-success across versions - verify output file instead
+
+- name: Check the XML report was produced
+  ansible.windows.win_stat:
+    path: "C:\\ansible_results\\pingcastle\\ad_hc_{{ ad_domain }}.xml"
+  register: pingcastle_report_stat
+
+- name: Fetch PingCastle XML report back to control node
+  ansible.builtin.fetch:
+    src: "C:\\ansible_results\\pingcastle\\ad_hc_{{ ad_domain }}.xml"
+    dest: "{{ results_root }}/pingcastle/{{ ad_domain }}.xml"
+    flat: true
+  when: pingcastle_report_stat.stat.exists
+
+- name: Warn if the report was not produced
+  ansible.builtin.debug:
+    msg: >
+      WARNING: PingCastle did not produce ad_hc_{{ ad_domain }}.xml on
+      {{ inventory_hostname }}. Check pingcastle_run output and that
+      pingcastle_exe_path is correct.
+  when: not pingcastle_report_stat.stat.exists

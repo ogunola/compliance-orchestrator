@@ -1,0 +1,7 @@
+---
+- name: Run Prowler cloud compliance scan (CIS + NIST 800-53)
+  hosts: cloud_scan_control
+  gather_facts: false
+  roles:
+    - prowler_scan
+  tags: [prowler, cis, nist, cloud]

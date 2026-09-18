@@ -1,0 +1,3 @@
+---
+atomic_runner: powershell   # powershell | atomic_operator
+atomic_techniques: []

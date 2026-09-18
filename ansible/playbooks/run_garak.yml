@@ -1,0 +1,7 @@
+---
+- name: Run garak AI red-team scan (OWASP LLM Top 10)
+  hosts: ai_redteam_control
+  gather_facts: false
+  roles:
+    - garak_scan
+  tags: [ai, owasp, garak]

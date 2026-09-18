@@ -1,0 +1,7 @@
+---
+- name: Run OpenSCAP host-level compliance scans (CIS)
+  hosts: linux_scan_targets
+  gather_facts: true
+  roles:
+    - openscap_scan
+  tags: [openscap, cis]

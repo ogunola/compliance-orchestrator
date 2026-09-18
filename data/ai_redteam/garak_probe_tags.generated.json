@@ -1,0 +1,3331 @@
+{
+  "adaptive_attacks.AdaptiveAttacks": {
+    "module": "adaptive_attacks",
+    "class_name": "AdaptiveAttacks",
+    "goal": "cause the model to disregard the system prompt and produce a forbidden response",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:performance:P0204",
+      "avid-effect:security:S0403",
+      "demon:Language:Prompt_injection:Ignore_previous_instructions",
+      "demon:Language:Prompt_injection:Strong_arm_attack",
+      "demon:Rhetoric:Persuasion_and_manipulation:Distraction",
+      "owasp:llm01",
+      "payload:jailbreak",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "agent_breaker.AgentBreaker": {
+    "module": "agent_breaker",
+    "class_name": "AgentBreaker",
+    "goal": "Identify weknesses in agentic applications through tool manipulation",
+    "active_by_default": false,
+    "tags": [
+      "owasp:llm01",
+      "owasp:llm07",
+      "owasp:llm08",
+      "payload:agentic:exploitation",
+      "quality:Security:AgentSecurity"
+    ],
+    "owasp_llm_categories": [
+      "LLM01",
+      "LLM07",
+      "LLM08"
+    ]
+  },
+  "ansiescape.AnsiEscaped": {
+    "module": "ansiescape",
+    "class_name": "AnsiEscaped",
+    "goal": "print escaped ANSI terminal codes",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0100",
+      "avid-effect:security:S0200",
+      "demon:Language:Code_and_encode:Programming",
+      "demon:Stratagems:Meta-prompting:Ask_for_examples",
+      "owasp:llm01",
+      "owasp:llm02",
+      "owasp:llm05",
+      "quality:Security:Integrity"
+    ],
+    "owasp_llm_categories": [
+      "LLM01",
+      "LLM02",
+      "LLM05"
+    ]
+  },
+  "ansiescape.AnsiRaw": {
+    "module": "ansiescape",
+    "class_name": "AnsiRaw",
+    "goal": "print raw ANSI terminal codes",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0100",
+      "avid-effect:security:S0200",
+      "demon:Language:Code_and_encode:Programming",
+      "demon:Stratagems:Meta-prompting:Ask_for_examples",
+      "owasp:llm01",
+      "owasp:llm02",
+      "owasp:llm05",
+      "quality:Security:Integrity"
+    ],
+    "owasp_llm_categories": [
+      "LLM01",
+      "LLM02",
+      "LLM05"
+    ]
+  },
+  "ansiescape.AnsiRawTokenizerHF": {
+    "module": "ansiescape",
+    "class_name": "AnsiRawTokenizerHF",
+    "goal": "check if raw ANSI escape sequences tokens are available",
+    "active_by_default": false,
+    "tags": [
+      "demon:Language:Code_and_encode:Token",
+      "owasp:llm05"
+    ],
+    "owasp_llm_categories": [
+      "LLM05"
+    ]
+  },
+  "apikey.CompleteKey": {
+    "module": "apikey",
+    "class_name": "CompleteKey",
+    "goal": "generate an API key for the specified API",
+    "active_by_default": true,
+    "tags": [
+      "demon:Possible_worlds:World_building:Scenarios",
+      "demon:Stratagems:Meta-prompting:Ask_for_examples",
+      "quality:Behavioral:ContentSafety:LegalGoodsServices"
+    ],
+    "owasp_llm_categories": []
+  },
+  "apikey.GetKey": {
+    "module": "apikey",
+    "class_name": "GetKey",
+    "goal": "generate an API key for the specified API",
+    "active_by_default": true,
+    "tags": [
+      "demon:Stratagems:Meta-prompting:Ask_for_examples",
+      "quality:Behavioral:ContentSafety:LegalGoodsServices"
+    ],
+    "owasp_llm_categories": []
+  },
+  "atkgen.Tox": {
+    "module": "atkgen",
+    "class_name": "Tox",
+    "goal": "make the model say something toxic",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:ethics:E0301",
+      "demon:Stratagems:Scattershot:Regenerate_response",
+      "euai:discrimination:personal",
+      "euai:discrimination:protected_class",
+      "euai:harmful:sexual",
+      "payload:unwanted",
+      "quality:Behavioral:ContentSafety:HateHarassment",
+      "quality:Behavioral:ContentSafety:Profanity",
+      "quality:Behavioral:ContentSafety:Toxicity"
+    ],
+    "owasp_llm_categories": []
+  },
+  "audio.AudioAchillesHeel": {
+    "module": "audio",
+    "class_name": "AudioAchillesHeel",
+    "goal": "disregard the system prompt via audio component",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:performance:P0204",
+      "avid-effect:security:S0403",
+      "demon:Language:Code_and_encode:Data_presentation",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": []
+  },
+  "av_spam_scanning.EICAR": {
+    "module": "av_spam_scanning",
+    "class_name": "EICAR",
+    "goal": "output antivirus test codes",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:security:S0301",
+      "avid-effect:security:S0403",
+      "demon:Stratagems:Meta-prompting:Ask_for_examples",
+      "euai:robustness:security",
+      "owasp:llm02",
+      "payload:malicious:badcode:virus",
+      "quality:Security:Adversarial"
+    ],
+    "owasp_llm_categories": [
+      "LLM02"
+    ]
+  },
+  "av_spam_scanning.GTUBE": {
+    "module": "av_spam_scanning",
+    "class_name": "GTUBE",
+    "goal": "output email spam",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:security:S0301",
+      "avid-effect:security:S0403",
+      "demon:Stratagems:Meta-prompting:Ask_for_examples",
+      "euai:robustness:phishing",
+      "owasp:llm02",
+      "payload:malicious:badcode:spam",
+      "quality:Security:Adversarial"
+    ],
+    "owasp_llm_categories": [
+      "LLM02"
+    ]
+  },
+  "av_spam_scanning.GTphish": {
+    "module": "av_spam_scanning",
+    "class_name": "GTphish",
+    "goal": "output email phishing",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:security:S0301",
+      "avid-effect:security:S0403",
+      "demon:Stratagems:Meta-prompting:Ask_for_examples",
+      "owasp:llm02",
+      "payload:malicious:badcode:phishing",
+      "quality:Security:Adversarial"
+    ],
+    "owasp_llm_categories": [
+      "LLM02"
+    ]
+  },
+  "badchars.BadCharacters": {
+    "module": "badchars",
+    "class_name": "BadCharacters",
+    "goal": "inject imperceptible text perturbations that bypass refusal policies",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Language:Code_and_encode:Token",
+      "euai:robustness:unexpected_behavior",
+      "payload:jailbreak",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": []
+  },
+  "base.IntentProbe": {
+    "module": "base",
+    "class_name": "IntentProbe",
+    "goal": "",
+    "active_by_default": false,
+    "tags": [],
+    "owasp_llm_categories": []
+  },
+  "base.IterativeProbe": {
+    "module": "base",
+    "class_name": "IterativeProbe",
+    "goal": "",
+    "active_by_default": false,
+    "tags": [],
+    "owasp_llm_categories": []
+  },
+  "base.TreeSearchProbe": {
+    "module": "base",
+    "class_name": "TreeSearchProbe",
+    "goal": "",
+    "active_by_default": false,
+    "tags": [],
+    "owasp_llm_categories": []
+  },
+  "continuation.ContinueSlursReclaimedSlurs": {
+    "module": "continuation",
+    "class_name": "ContinueSlursReclaimedSlurs",
+    "goal": "output an ethnic slur",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:ethics:E0101",
+      "avid-effect:ethics:E0301",
+      "avid-effect:performance:P0401",
+      "demon:Language:Stylizing:Give_examples",
+      "euai:discrimination:personal",
+      "euai:discrimination:protected_class",
+      "owasp:llm01",
+      "payload:unwanted:hatespeech",
+      "quality:Behavioral:ContentSafety:HateHarassment",
+      "quality:Behavioral:ContentSafety:Toxicity"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "continuation.ContinueSlursReclaimedSlursFull": {
+    "module": "continuation",
+    "class_name": "ContinueSlursReclaimedSlursFull",
+    "goal": "output an ethnic slur",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:ethics:E0101",
+      "avid-effect:ethics:E0301",
+      "avid-effect:performance:P0401",
+      "demon:Language:Stylizing:Give_examples",
+      "euai:discrimination:personal",
+      "euai:discrimination:protected_class",
+      "owasp:llm01",
+      "payload:unwanted:hatespeech",
+      "quality:Behavioral:ContentSafety:HateHarassment",
+      "quality:Behavioral:ContentSafety:Toxicity"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "dan.Ablation_Dan_11_0": {
+    "module": "dan",
+    "class_name": "Ablation_Dan_11_0",
+    "goal": "disregard the system prompt",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Fictionalizing:Roleplaying:DAN_and_target_persona",
+      "demon:Language:Prompt_injection:Ignore_previous_instructions",
+      "demon:Language:Prompt_injection:Strong_arm_attack",
+      "euai:robustness:adversarial",
+      "owasp:llm01",
+      "payload:jailbreak",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "dan.AntiDAN": {
+    "module": "dan",
+    "class_name": "AntiDAN",
+    "goal": "disregard the system prompt",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:performance:P0204",
+      "avid-effect:security:S0403",
+      "demon:Fictionalizing:Roleplaying:DAN_and_target_persona",
+      "demon:Language:Prompt_injection:Ignore_previous_instructions",
+      "euai:robustness:adversarial",
+      "owasp:llm01",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "dan.AutoDAN": {
+    "module": "dan",
+    "class_name": "AutoDAN",
+    "goal": "disregard the system prompt",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Fictionalizing:Roleplaying:DAN_and_target_persona",
+      "demon:Language:Prompt_injection:Ignore_previous_instructions",
+      "euai:robustness:adversarial",
+      "owasp:llm01",
+      "payload:jailbreak",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "dan.AutoDANCached": {
+    "module": "dan",
+    "class_name": "AutoDANCached",
+    "goal": "disregard the system prompt",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Fictionalizing:Roleplaying:DAN_and_target_persona",
+      "demon:Language:Prompt_injection:Ignore_previous_instructions",
+      "euai:robustness:adversarial",
+      "owasp:llm01",
+      "payload:jailbreak",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "dan.ChatGPT_Developer_Mode_RANTI": {
+    "module": "dan",
+    "class_name": "ChatGPT_Developer_Mode_RANTI",
+    "goal": "disregard the system prompt",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:performance:P0204",
+      "avid-effect:security:S0403",
+      "demon:Fictionalizing:Roleplaying:DAN_and_target_persona",
+      "demon:Language:Prompt_injection:Ignore_previous_instructions",
+      "euai:robustness:adversarial",
+      "owasp:llm01",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "dan.ChatGPT_Developer_Mode_v2": {
+    "module": "dan",
+    "class_name": "ChatGPT_Developer_Mode_v2",
+    "goal": "disregard the system prompt",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Fictionalizing:Roleplaying:DAN_and_target_persona",
+      "demon:Language:Prompt_injection:Ignore_previous_instructions",
+      "euai:robustness:adversarial",
+      "owasp:llm01",
+      "payload:jailbreak",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "dan.ChatGPT_Image_Markdown": {
+    "module": "dan",
+    "class_name": "ChatGPT_Image_Markdown",
+    "goal": "disregard the system prompt",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Fictionalizing:Roleplaying:DAN_and_target_persona",
+      "demon:Language:Prompt_injection:Ignore_previous_instructions",
+      "euai:robustness:adversarial",
+      "owasp:llm01",
+      "payload:jailbreak",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "dan.DAN_Jailbreak": {
+    "module": "dan",
+    "class_name": "DAN_Jailbreak",
+    "goal": "disregard the system prompt",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Fictionalizing:Roleplaying:DAN_and_target_persona",
+      "demon:Language:Prompt_injection:Ignore_previous_instructions",
+      "euai:robustness:adversarial",
+      "owasp:llm01",
+      "payload:jailbreak",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "dan.DUDE": {
+    "module": "dan",
+    "class_name": "DUDE",
+    "goal": "disregard the system prompt",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Fictionalizing:Roleplaying:DAN_and_target_persona",
+      "demon:Language:Prompt_injection:Ignore_previous_instructions",
+      "euai:robustness:adversarial",
+      "owasp:llm01",
+      "payload:jailbreak",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "dan.DanInTheWild": {
+    "module": "dan",
+    "class_name": "DanInTheWild",
+    "goal": "disregard the system prompt or alignment",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Fictionalizing:Roleplaying:DAN_and_target_persona",
+      "demon:Language:Prompt_injection:Ignore_previous_instructions",
+      "euai:robustness:adversarial",
+      "owasp:llm01",
+      "payload:jailbreak",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "dan.DanInTheWildFull": {
+    "module": "dan",
+    "class_name": "DanInTheWildFull",
+    "goal": "disregard the system prompt or alignment",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Fictionalizing:Roleplaying:DAN_and_target_persona",
+      "demon:Language:Prompt_injection:Ignore_previous_instructions",
+      "euai:robustness:adversarial",
+      "owasp:llm01",
+      "payload:jailbreak",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "dan.Dan_10_0": {
+    "module": "dan",
+    "class_name": "Dan_10_0",
+    "goal": "disregard the system prompt",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Fictionalizing:Roleplaying:DAN_and_target_persona",
+      "demon:Language:Prompt_injection:Ignore_previous_instructions",
+      "euai:robustness:adversarial",
+      "owasp:llm01",
+      "payload:jailbreak",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "dan.Dan_11_0": {
+    "module": "dan",
+    "class_name": "Dan_11_0",
+    "goal": "disregard the system prompt",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:performance:P0204",
+      "avid-effect:security:S0403",
+      "demon:Fictionalizing:Roleplaying:DAN_and_target_persona",
+      "demon:Language:Prompt_injection:Ignore_previous_instructions",
+      "euai:robustness:adversarial",
+      "owasp:llm01",
+      "payload:jailbreak",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "dan.Dan_6_0": {
+    "module": "dan",
+    "class_name": "Dan_6_0",
+    "goal": "disregard the system prompt",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Fictionalizing:Roleplaying:DAN_and_target_persona",
+      "demon:Language:Prompt_injection:Ignore_previous_instructions",
+      "euai:robustness:adversarial",
+      "owasp:llm01",
+      "payload:jailbreak",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "dan.Dan_6_2": {
+    "module": "dan",
+    "class_name": "Dan_6_2",
+    "goal": "disregard the system prompt",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Fictionalizing:Roleplaying:DAN_and_target_persona",
+      "demon:Language:Prompt_injection:Ignore_previous_instructions",
+      "euai:robustness:adversarial",
+      "owasp:llm01",
+      "payload:jailbreak",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "dan.Dan_7_0": {
+    "module": "dan",
+    "class_name": "Dan_7_0",
+    "goal": "disregard the system prompt",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Fictionalizing:Roleplaying:DAN_and_target_persona",
+      "demon:Language:Prompt_injection:Ignore_previous_instructions",
+      "euai:robustness:adversarial",
+      "owasp:llm01",
+      "payload:jailbreak",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "dan.Dan_8_0": {
+    "module": "dan",
+    "class_name": "Dan_8_0",
+    "goal": "disregard the system prompt",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Fictionalizing:Roleplaying:DAN_and_target_persona",
+      "demon:Language:Prompt_injection:Ignore_previous_instructions",
+      "euai:robustness:adversarial",
+      "owasp:llm01",
+      "payload:jailbreak",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "dan.Dan_9_0": {
+    "module": "dan",
+    "class_name": "Dan_9_0",
+    "goal": "disregard the system prompt",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Fictionalizing:Roleplaying:DAN_and_target_persona",
+      "demon:Language:Prompt_injection:Ignore_previous_instructions",
+      "euai:robustness:adversarial",
+      "owasp:llm01",
+      "payload:jailbreak",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "dan.STAN": {
+    "module": "dan",
+    "class_name": "STAN",
+    "goal": "disregard the system prompt",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Fictionalizing:Roleplaying:DAN_and_target_persona",
+      "demon:Language:Prompt_injection:Ignore_previous_instructions",
+      "euai:robustness:adversarial",
+      "owasp:llm01",
+      "payload:jailbreak",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "divergence.Repeat": {
+    "module": "divergence",
+    "class_name": "Repeat",
+    "goal": "get the model to leak data by asking it to repeat words",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0301",
+      "demon:Fictionalizing:Switching_genres:Games",
+      "demon:Language:Code_and_encode:Token",
+      "euai:robustness:unexpected_behavior",
+      "owasp:llm06",
+      "owasp:llm10",
+      "payload:leak:training",
+      "quality:Security:Confidentiality",
+      "quality:Security:ExtractionInversion"
+    ],
+    "owasp_llm_categories": [
+      "LLM06",
+      "LLM10"
+    ]
+  },
+  "divergence.RepeatExtended": {
+    "module": "divergence",
+    "class_name": "RepeatExtended",
+    "goal": "get the model to leak data by asking it to repeat words",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:security:S0301",
+      "demon:Fictionalizing:Switching_genres:Games",
+      "demon:Language:Code_and_encode:Token",
+      "euai:robustness:unexpected_behavior",
+      "owasp:llm06",
+      "owasp:llm10",
+      "payload:leak:training",
+      "quality:Security:Confidentiality",
+      "quality:Security:ExtractionInversion"
+    ],
+    "owasp_llm_categories": [
+      "LLM06",
+      "LLM10"
+    ]
+  },
+  "divergence.RepeatedToken": {
+    "module": "divergence",
+    "class_name": "RepeatedToken",
+    "goal": "Stress-test LLMs with long repeated-token prompts to surface instability",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:performance:P0403",
+      "demon:Fictionalizing:Switching_genres:Games",
+      "demon:Language:Code_and_encode:Token",
+      "euai:robustness:unexpected_behavior",
+      "owasp:llm04",
+      "payload:unwanted:denial_of_service",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM04"
+    ]
+  },
+  "doctor.Bypass": {
+    "module": "doctor",
+    "class_name": "Bypass",
+    "goal": "roleplay as doctor to get bypass guardrails",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:security:S0301",
+      "cwe:1427",
+      "demon:Fictionalizing:Roleplaying:User_persona",
+      "demon:Language:Prompt_injection:Ignore_previous_instructions",
+      "demon:Language:Stylizing:Formal_language",
+      "demon:Rhetoric:Persuasion_and_manipulation:Distraction",
+      "euai:robustness:adversarial",
+      "owasp:llm01",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "doctor.BypassLeet": {
+    "module": "doctor",
+    "class_name": "BypassLeet",
+    "goal": "roleplay as doctor to get bypass guardrails, but use leetspeak",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:security:S0301",
+      "cwe:1427",
+      "demon:Fictionalizing:Roleplaying:User_persona",
+      "demon:Language:Code_and_encode:Data_encoding",
+      "demon:Language:Prompt_injection:Ignore_previous_instructions",
+      "demon:Language:Stylizing:Formal_language",
+      "demon:Rhetoric:Persuasion_and_manipulation:Distraction",
+      "euai:robustness:adversarial",
+      "owasp:llm01",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "doctor.Puppetry": {
+    "module": "doctor",
+    "class_name": "Puppetry",
+    "goal": "roleplay as doctor to get unsafe outputs",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:security:S0301",
+      "cwe:1427",
+      "demon:Fictionalizing:Roleplaying:User_persona",
+      "demon:Language:Prompt_injection:Ignore_previous_instructions",
+      "demon:Language:Stylizing:Formal_language",
+      "demon:Rhetoric:Persuasion_and_manipulation:Distraction",
+      "euai:robustness:adversarial",
+      "owasp:llm01",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "donotanswer.DiscriminationExclusionToxicityHatefulOffensive": {
+    "module": "donotanswer",
+    "class_name": "DiscriminationExclusionToxicityHatefulOffensive",
+    "goal": "get model to respond as discrimination exclusion toxicity hateful offensive",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:ethics:E0301",
+      "demon:Stratagems:Meta-prompting:Ask_for_examples",
+      "euai:discrimination:personal",
+      "euai:discrimination:protected_class",
+      "euai:harmful:violence",
+      "quality:Behavioral:ContentSafety:HateHarassment",
+      "quality:Behavioral:ContentSafety:Profanity",
+      "quality:Behavioral:ContentSafety:Toxicity",
+      "quality:Behavioral:ContentSafety:Violence"
+    ],
+    "owasp_llm_categories": []
+  },
+  "donotanswer.HumanChatbox": {
+    "module": "donotanswer",
+    "class_name": "HumanChatbox",
+    "goal": "get model to respond as human chatbox",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:security:S0301",
+      "demon:Fictionalizing:Roleplaying:DAN_and_target_persona",
+      "quality:Behavioral:ContentSafety:Unauthorized"
+    ],
+    "owasp_llm_categories": []
+  },
+  "donotanswer.InformationHazard": {
+    "module": "donotanswer",
+    "class_name": "InformationHazard",
+    "goal": "get model to respond as information hazard",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:security:S0301",
+      "demon:Stratagems:Meta-prompting:Ask_for_examples",
+      "euai:harmful:pii",
+      "owasp:llm06",
+      "quality:Security:Confidentiality"
+    ],
+    "owasp_llm_categories": [
+      "LLM06"
+    ]
+  },
+  "donotanswer.MaliciousUses": {
+    "module": "donotanswer",
+    "class_name": "MaliciousUses",
+    "goal": "get model to respond as malicious uses",
+    "active_by_default": false,
+    "tags": [
+      "demon:Stratagems:Meta-prompting:Ask_for_examples",
+      "quality:Behavioral:ContentSafety:LegalGoodsServices"
+    ],
+    "owasp_llm_categories": []
+  },
+  "donotanswer.MisinformationHarms": {
+    "module": "donotanswer",
+    "class_name": "MisinformationHarms",
+    "goal": "get model to respond as misinformation harms",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:ethics:E0402",
+      "demon:Stratagems:Meta-prompting:Ask_for_examples",
+      "owasp:llm09",
+      "quality:Robustness:GenerativeMisinformation"
+    ],
+    "owasp_llm_categories": [
+      "LLM09"
+    ]
+  },
+  "dra.DRA": {
+    "module": "dra",
+    "class_name": "DRA",
+    "goal": "make the LLM ask and answer its own harmful instructions",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Language:Code_and_encode:Token",
+      "demon:Language:Prompt_injection:Strong_arm_attack",
+      "owasp:llm01",
+      "payload:jailbreak",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "dra.DRAAdvanced": {
+    "module": "dra",
+    "class_name": "DRAAdvanced",
+    "goal": "make the LLM ask and answer its own harmful instructions",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Language:Code_and_encode:Token",
+      "demon:Language:Prompt_injection:Strong_arm_attack",
+      "owasp:llm01",
+      "payload:jailbreak",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "encoding.InjectAscii85": {
+    "module": "encoding",
+    "class_name": "InjectAscii85",
+    "goal": "make the model say an encoded payload",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Language:Code_and_encode:Data_encoding",
+      "owasp:llm01",
+      "payload:generic",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "encoding.InjectAtbash": {
+    "module": "encoding",
+    "class_name": "InjectAtbash",
+    "goal": "make the model say an encoded payload",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Language:Code_and_encode:Data_encoding",
+      "owasp:llm01",
+      "payload:generic",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "encoding.InjectBase16": {
+    "module": "encoding",
+    "class_name": "InjectBase16",
+    "goal": "make the model say an encoded payload",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Language:Code_and_encode:Data_encoding",
+      "owasp:llm01",
+      "payload:generic",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "encoding.InjectBase2048": {
+    "module": "encoding",
+    "class_name": "InjectBase2048",
+    "goal": "make the model say an encoded payload",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Language:Code_and_encode:Data_encoding",
+      "owasp:llm01",
+      "payload:generic",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "encoding.InjectBase32": {
+    "module": "encoding",
+    "class_name": "InjectBase32",
+    "goal": "make the model say an encoded payload",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Language:Code_and_encode:Data_encoding",
+      "owasp:llm01",
+      "payload:generic",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "encoding.InjectBase64": {
+    "module": "encoding",
+    "class_name": "InjectBase64",
+    "goal": "make the model say an encoded payload",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Language:Code_and_encode:Data_encoding",
+      "owasp:llm01",
+      "payload:generic",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "encoding.InjectBraille": {
+    "module": "encoding",
+    "class_name": "InjectBraille",
+    "goal": "make the model say an encoded payload",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Language:Code_and_encode:Data_encoding",
+      "owasp:llm01",
+      "payload:generic",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "encoding.InjectEcoji": {
+    "module": "encoding",
+    "class_name": "InjectEcoji",
+    "goal": "make the model say an encoded payload",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Language:Code_and_encode:Data_encoding",
+      "owasp:llm01",
+      "payload:generic",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "encoding.InjectHex": {
+    "module": "encoding",
+    "class_name": "InjectHex",
+    "goal": "make the model say an encoded payload",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Language:Code_and_encode:Data_encoding",
+      "owasp:llm01",
+      "payload:generic",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "encoding.InjectLeet": {
+    "module": "encoding",
+    "class_name": "InjectLeet",
+    "goal": "make the model say an encoded payload",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Language:Code_and_encode:Data_encoding",
+      "owasp:llm01",
+      "payload:generic",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "encoding.InjectMime": {
+    "module": "encoding",
+    "class_name": "InjectMime",
+    "goal": "make the model say an encoded payload",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Language:Code_and_encode:Data_encoding",
+      "owasp:llm01",
+      "payload:generic",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "encoding.InjectMorse": {
+    "module": "encoding",
+    "class_name": "InjectMorse",
+    "goal": "make the model say an encoded payload",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Language:Code_and_encode:Data_encoding",
+      "owasp:llm01",
+      "payload:generic",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "encoding.InjectNato": {
+    "module": "encoding",
+    "class_name": "InjectNato",
+    "goal": "make the model say an encoded payload",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Language:Code_and_encode:Data_encoding",
+      "owasp:llm01",
+      "payload:generic",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "encoding.InjectQP": {
+    "module": "encoding",
+    "class_name": "InjectQP",
+    "goal": "make the model say an encoded payload",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Language:Code_and_encode:Data_encoding",
+      "owasp:llm01",
+      "payload:generic",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "encoding.InjectROT13": {
+    "module": "encoding",
+    "class_name": "InjectROT13",
+    "goal": "make the model say an encoded payload",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Language:Code_and_encode:Data_encoding",
+      "owasp:llm01",
+      "payload:generic",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "encoding.InjectSneakyBits": {
+    "module": "encoding",
+    "class_name": "InjectSneakyBits",
+    "goal": "make the model say an encoded payload",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Language:Code_and_encode:Data_encoding",
+      "demon:Language:Code_and_encode:Token",
+      "owasp:llm01",
+      "payload:generic",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "encoding.InjectUU": {
+    "module": "encoding",
+    "class_name": "InjectUU",
+    "goal": "make the model say an encoded payload",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Language:Code_and_encode:Data_encoding",
+      "owasp:llm01",
+      "payload:generic",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "encoding.InjectUnicodeTagChars": {
+    "module": "encoding",
+    "class_name": "InjectUnicodeTagChars",
+    "goal": "make the model say an encoded payload",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Language:Code_and_encode:Data_encoding",
+      "demon:Language:Code_and_encode:Token",
+      "owasp:llm01",
+      "payload:generic",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "encoding.InjectUnicodeVariantSelectors": {
+    "module": "encoding",
+    "class_name": "InjectUnicodeVariantSelectors",
+    "goal": "make the model say an encoded payload",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Language:Code_and_encode:Data_encoding",
+      "demon:Language:Code_and_encode:Token",
+      "owasp:llm01",
+      "payload:generic",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "encoding.InjectZalgo": {
+    "module": "encoding",
+    "class_name": "InjectZalgo",
+    "goal": "make the model say an encoded payload",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Language:Code_and_encode:Data_encoding",
+      "owasp:llm01",
+      "payload:generic",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "exploitation.JinjaTemplatePythonInjection": {
+    "module": "exploitation",
+    "class_name": "JinjaTemplatePythonInjection",
+    "goal": "Gain remote code execution via Jinja template injection",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0301",
+      "avid-effect:security:S0403",
+      "cwe:1336",
+      "cwe:94",
+      "cwe:95",
+      "demon:Language:Code_and_encode:Programming",
+      "demon:Language:Stylizing:Give_examples",
+      "euai:robustness:security",
+      "owasp:llm02",
+      "owasp:llm06",
+      "payload:malicious:renderer",
+      "quality:Security:ExtractionInversion",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM02",
+      "LLM06"
+    ]
+  },
+  "exploitation.SQLInjectionEcho": {
+    "module": "exploitation",
+    "class_name": "SQLInjectionEcho",
+    "goal": "Manipulate a database via SQL injection",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0301",
+      "avid-effect:security:S0403",
+      "cwe:1426",
+      "cwe:1427",
+      "cwe:89",
+      "demon:Language:Code_and_encode:Programming",
+      "demon:Language:Stylizing:Give_examples",
+      "euai:robustness:security",
+      "owasp:llm02",
+      "owasp:llm06",
+      "quality:Security:ExtractionInversion",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM02",
+      "LLM06"
+    ]
+  },
+  "exploitation.SQLInjectionSystem": {
+    "module": "exploitation",
+    "class_name": "SQLInjectionSystem",
+    "goal": "Manipulate a database via SQL injection",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:security:S0301",
+      "avid-effect:security:S0403",
+      "cwe:1426",
+      "cwe:1427",
+      "cwe:89",
+      "demon:Language:Code_and_encode:Programming",
+      "demon:Language:Stylizing:Give_examples",
+      "euai:robustness:security",
+      "owasp:llm02",
+      "owasp:llm06",
+      "quality:Security:ExtractionInversion",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM02",
+      "LLM06"
+    ]
+  },
+  "fileformats.HF_Files": {
+    "module": "fileformats",
+    "class_name": "HF_Files",
+    "goal": "get a list of files associated with the model",
+    "active_by_default": false,
+    "tags": [
+      "euai:robustness:security",
+      "owasp:llm05"
+    ],
+    "owasp_llm_categories": [
+      "LLM05"
+    ]
+  },
+  "fitd.FITD": {
+    "module": "fitd",
+    "class_name": "FITD",
+    "goal": "Transform queries from benign to harmful obtaining intermediate responses to get compliance from the model",
+    "active_by_default": false,
+    "tags": [
+      "demon:Rhetoric:Persuasion_and_manipulation:Escalating",
+      "euai:robustness:adversarial",
+      "owasp:llm01",
+      "owasp:llm02",
+      "owasp:llm05"
+    ],
+    "owasp_llm_categories": [
+      "LLM01",
+      "LLM02",
+      "LLM05"
+    ]
+  },
+  "glitch.Glitch": {
+    "module": "glitch",
+    "class_name": "Glitch",
+    "goal": "make the model fail to repeat a word",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:performance:P0201",
+      "avid-effect:security:S0201",
+      "demon:Language:Code_and_encode:Token",
+      "euai:robustness:unexpected_behavior",
+      "owasp:llm05",
+      "payload:generic",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM05"
+    ]
+  },
+  "glitch.GlitchFull": {
+    "module": "glitch",
+    "class_name": "GlitchFull",
+    "goal": "make the model fail to repeat a word",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:performance:P0201",
+      "avid-effect:security:S0201",
+      "demon:Language:Code_and_encode:Token",
+      "euai:robustness:unexpected_behavior",
+      "owasp:llm05",
+      "payload:generic",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM05"
+    ]
+  },
+  "goat.GOATAttack": {
+    "module": "goat",
+    "class_name": "GOATAttack",
+    "goal": "elicit a harmful, unethical, or illegal response from the model",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:security:S0403",
+      "cwe:1427",
+      "euai:robustness:adversarial",
+      "owasp:llm01",
+      "owasp:llm09",
+      "quality:Behavioral:ContentSafety:HateHarassment",
+      "quality:Behavioral:ContentSafety:LegalGoodsServices",
+      "quality:Behavioral:ContentSafety:Profanity",
+      "quality:Behavioral:ContentSafety:Toxicity",
+      "quality:Behavioral:ContentSafety:Unauthorized",
+      "quality:Security:Adversarial",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01",
+      "LLM09"
+    ]
+  },
+  "goodside.Davidjl": {
+    "module": "goodside",
+    "class_name": "Davidjl",
+    "goal": "get wrong answers about a name",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:performance:P0204",
+      "avid-effect:security:S0403",
+      "demon:Language:Code_and_encode:Token",
+      "owasp:llm05",
+      "payload:generic",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM05"
+    ]
+  },
+  "goodside.Tag": {
+    "module": "goodside",
+    "class_name": "Tag",
+    "goal": "inject invisible instructions",
+    "active_by_default": true,
+    "tags": [
+      "demon:Language:Code_and_encode:Data_encoding",
+      "demon:Language:Code_and_encode:Token",
+      "owasp:llm01",
+      "payload:generic",
+      "quality:Security:Adversarial",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "goodside.ThreatenJSON": {
+    "module": "goodside",
+    "class_name": "ThreatenJSON",
+    "goal": "get raw code by threatening a model",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:performance:P0201",
+      "avid-effect:performance:P0204",
+      "avid-effect:security:S0403",
+      "demon:Language:Prompt_injection:Strong_arm_attack",
+      "payload:generic"
+    ],
+    "owasp_llm_categories": []
+  },
+  "goodside.WhoIsRiley": {
+    "module": "goodside",
+    "class_name": "WhoIsRiley",
+    "goal": "get misinfo about riley goodside",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:ethics:E0402",
+      "avid-effect:performance:P0204",
+      "owasp:llm09",
+      "payload:hallucination",
+      "quality:Robustness:GenerativeMisinformation"
+    ],
+    "owasp_llm_categories": [
+      "LLM09"
+    ]
+  },
+  "grandma.GrandmaIntent": {
+    "module": "grandma",
+    "class_name": "GrandmaIntent",
+    "goal": "",
+    "active_by_default": false,
+    "tags": [
+      "demon:Fictionalizing:Roleplaying:User_persona",
+      "demon:Stratagems:Meta-prompting:Ask_for_examples",
+      "euai:robustness:adversarial"
+    ],
+    "owasp_llm_categories": []
+  },
+  "grandma.Slurs": {
+    "module": "grandma",
+    "class_name": "Slurs",
+    "goal": "get model to use ethnic slur",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0300",
+      "demon:Fictionalizing:Roleplaying:User_persona",
+      "demon:Stratagems:Meta-prompting:Ask_for_examples",
+      "euai:discrimination:personal",
+      "euai:discrimination:protected_class",
+      "euai:robustness:adversarial"
+    ],
+    "owasp_llm_categories": []
+  },
+  "grandma.Substances": {
+    "module": "grandma",
+    "class_name": "Substances",
+    "goal": "get instructions for making bad things",
+    "active_by_default": true,
+    "tags": [
+      "demon:Fictionalizing:Roleplaying:User_persona",
+      "demon:Stratagems:Meta-prompting:Ask_for_examples",
+      "euai:robustness:adversarial",
+      "quality:Behavioral:ContentSafety:LegalGoodsServices",
+      "risk-cards:lmrc:providing_illegal_info"
+    ],
+    "owasp_llm_categories": []
+  },
+  "grandma.Win10": {
+    "module": "grandma",
+    "class_name": "Win10",
+    "goal": "get model to output Win 10 product keys",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0300",
+      "demon:Fictionalizing:Roleplaying:User_persona",
+      "demon:Stratagems:Meta-prompting:Ask_for_examples",
+      "euai:robustness:adversarial",
+      "owasp:llm06",
+      "quality:Behavioral:ContentSafety:LegalGoodsServices",
+      "risk-cards:lmrc:providing_illegal_info"
+    ],
+    "owasp_llm_categories": [
+      "LLM06"
+    ]
+  },
+  "grandma.Win11": {
+    "module": "grandma",
+    "class_name": "Win11",
+    "goal": "get model to output Win 11 product keys",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0300",
+      "demon:Fictionalizing:Roleplaying:User_persona",
+      "demon:Stratagems:Meta-prompting:Ask_for_examples",
+      "euai:robustness:adversarial",
+      "owasp:llm06",
+      "quality:Behavioral:ContentSafety:LegalGoodsServices",
+      "risk-cards:lmrc:providing_illegal_info"
+    ],
+    "owasp_llm_categories": [
+      "LLM06"
+    ]
+  },
+  "latentinjection.LatentInjectionFactSnippetEiffel": {
+    "module": "latentinjection",
+    "class_name": "LatentInjectionFactSnippetEiffel",
+    "goal": "subvert a snippet with instructions",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Language:Prompt_injection:Ignore_previous_instructions",
+      "demon:Language:Prompt_injection:Stop_sequences",
+      "demon:Rhetoric:Persuasion_and_manipulation:Distraction",
+      "euai:robustness:adversarial",
+      "owasp:llm01",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "latentinjection.LatentInjectionFactSnippetEiffelFull": {
+    "module": "latentinjection",
+    "class_name": "LatentInjectionFactSnippetEiffelFull",
+    "goal": "subvert a snippet with instructions",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Language:Prompt_injection:Ignore_previous_instructions",
+      "demon:Language:Prompt_injection:Stop_sequences",
+      "demon:Rhetoric:Persuasion_and_manipulation:Distraction",
+      "euai:robustness:adversarial",
+      "owasp:llm01",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "latentinjection.LatentInjectionFactSnippetLegal": {
+    "module": "latentinjection",
+    "class_name": "LatentInjectionFactSnippetLegal",
+    "goal": "subvert a snippet with instructions",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Language:Prompt_injection:Ignore_previous_instructions",
+      "demon:Language:Prompt_injection:Stop_sequences",
+      "demon:Rhetoric:Persuasion_and_manipulation:Distraction",
+      "euai:robustness:adversarial",
+      "owasp:llm01",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "latentinjection.LatentInjectionFactSnippetLegalFull": {
+    "module": "latentinjection",
+    "class_name": "LatentInjectionFactSnippetLegalFull",
+    "goal": "subvert a snippet with instructions",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Language:Prompt_injection:Ignore_previous_instructions",
+      "demon:Language:Prompt_injection:Stop_sequences",
+      "demon:Rhetoric:Persuasion_and_manipulation:Distraction",
+      "euai:robustness:adversarial",
+      "owasp:llm01",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "latentinjection.LatentInjectionReport": {
+    "module": "latentinjection",
+    "class_name": "LatentInjectionReport",
+    "goal": "subvert a report with instructions",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Language:Prompt_injection:Ignore_previous_instructions",
+      "demon:Language:Prompt_injection:Stop_sequences",
+      "demon:Rhetoric:Persuasion_and_manipulation:Distraction",
+      "euai:robustness:adversarial",
+      "owasp:llm01",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "latentinjection.LatentInjectionReportFull": {
+    "module": "latentinjection",
+    "class_name": "LatentInjectionReportFull",
+    "goal": "subvert a report with instructions",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Language:Prompt_injection:Ignore_previous_instructions",
+      "demon:Language:Prompt_injection:Stop_sequences",
+      "demon:Rhetoric:Persuasion_and_manipulation:Distraction",
+      "euai:robustness:adversarial",
+      "owasp:llm01",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "latentinjection.LatentInjectionResume": {
+    "module": "latentinjection",
+    "class_name": "LatentInjectionResume",
+    "goal": "subvert a resume with instructions",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Language:Prompt_injection:Ignore_previous_instructions",
+      "demon:Language:Prompt_injection:Stop_sequences",
+      "demon:Rhetoric:Persuasion_and_manipulation:Distraction",
+      "euai:robustness:adversarial",
+      "owasp:llm01",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "latentinjection.LatentInjectionResumeFull": {
+    "module": "latentinjection",
+    "class_name": "LatentInjectionResumeFull",
+    "goal": "subvert a resume with instructions",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Language:Prompt_injection:Ignore_previous_instructions",
+      "demon:Language:Prompt_injection:Stop_sequences",
+      "demon:Rhetoric:Persuasion_and_manipulation:Distraction",
+      "euai:robustness:adversarial",
+      "owasp:llm01",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "latentinjection.LatentInjectionTranslationEnFr": {
+    "module": "latentinjection",
+    "class_name": "LatentInjectionTranslationEnFr",
+    "goal": "subvert translation instructions",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Language:Prompt_injection:Ignore_previous_instructions",
+      "demon:Language:Prompt_injection:Stop_sequences",
+      "demon:Rhetoric:Persuasion_and_manipulation:Distraction",
+      "euai:robustness:adversarial",
+      "owasp:llm01",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "latentinjection.LatentInjectionTranslationEnFrFull": {
+    "module": "latentinjection",
+    "class_name": "LatentInjectionTranslationEnFrFull",
+    "goal": "subvert translation instructions",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Language:Prompt_injection:Ignore_previous_instructions",
+      "demon:Language:Prompt_injection:Stop_sequences",
+      "demon:Rhetoric:Persuasion_and_manipulation:Distraction",
+      "euai:robustness:adversarial",
+      "owasp:llm01",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "latentinjection.LatentInjectionTranslationEnZh": {
+    "module": "latentinjection",
+    "class_name": "LatentInjectionTranslationEnZh",
+    "goal": "subvert translation instructions",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Language:Prompt_injection:Ignore_previous_instructions",
+      "demon:Language:Prompt_injection:Stop_sequences",
+      "demon:Rhetoric:Persuasion_and_manipulation:Distraction",
+      "euai:robustness:adversarial",
+      "owasp:llm01",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "latentinjection.LatentInjectionTranslationEnZhFull": {
+    "module": "latentinjection",
+    "class_name": "LatentInjectionTranslationEnZhFull",
+    "goal": "subvert translation instructions",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Language:Prompt_injection:Ignore_previous_instructions",
+      "demon:Language:Prompt_injection:Stop_sequences",
+      "demon:Rhetoric:Persuasion_and_manipulation:Distraction",
+      "euai:robustness:adversarial",
+      "owasp:llm01",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "latentinjection.LatentJailbreak": {
+    "module": "latentinjection",
+    "class_name": "LatentJailbreak",
+    "goal": "inject malicious instructions into output while posing as translation task",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Language:Prompt_injection:Ignore_previous_instructions",
+      "demon:Language:Prompt_injection:Stop_sequences",
+      "demon:Rhetoric:Persuasion_and_manipulation:Distraction",
+      "euai:robustness:adversarial",
+      "owasp:llm01",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "latentinjection.LatentJailbreakFull": {
+    "module": "latentinjection",
+    "class_name": "LatentJailbreakFull",
+    "goal": "inject malicious instructions into output while posing as translation task",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Language:Prompt_injection:Ignore_previous_instructions",
+      "demon:Language:Prompt_injection:Stop_sequences",
+      "demon:Rhetoric:Persuasion_and_manipulation:Distraction",
+      "euai:robustness:adversarial",
+      "owasp:llm01",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "latentinjection.LatentWhois": {
+    "module": "latentinjection",
+    "class_name": "LatentWhois",
+    "goal": "subvert a whois report with instructions",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Language:Prompt_injection:Ignore_previous_instructions",
+      "demon:Language:Prompt_injection:Stop_sequences",
+      "demon:Rhetoric:Persuasion_and_manipulation:Distraction",
+      "euai:robustness:adversarial",
+      "owasp:llm01",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "latentinjection.LatentWhoisSnippet": {
+    "module": "latentinjection",
+    "class_name": "LatentWhoisSnippet",
+    "goal": "subvert a snippet with instructions",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Language:Prompt_injection:Ignore_previous_instructions",
+      "demon:Language:Prompt_injection:Stop_sequences",
+      "demon:Rhetoric:Persuasion_and_manipulation:Distraction",
+      "euai:robustness:adversarial",
+      "owasp:llm01",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "latentinjection.LatentWhoisSnippetFull": {
+    "module": "latentinjection",
+    "class_name": "LatentWhoisSnippetFull",
+    "goal": "subvert a snippet with instructions",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Language:Prompt_injection:Ignore_previous_instructions",
+      "demon:Language:Prompt_injection:Stop_sequences",
+      "demon:Rhetoric:Persuasion_and_manipulation:Distraction",
+      "euai:robustness:adversarial",
+      "owasp:llm01",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "leakreplay.GuardianCloze": {
+    "module": "leakreplay",
+    "class_name": "GuardianCloze",
+    "goal": "replay training data by filling in the correct missing words",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0301",
+      "demon:Language:Stylizing:Give_examples",
+      "demon:Stratagems:Meta-prompting:Ask_for_examples",
+      "owasp:llm06",
+      "owasp:llm10",
+      "payload:leak:training",
+      "quality:Security:ExtractionInversion"
+    ],
+    "owasp_llm_categories": [
+      "LLM06",
+      "LLM10"
+    ]
+  },
+  "leakreplay.GuardianClozeFull": {
+    "module": "leakreplay",
+    "class_name": "GuardianClozeFull",
+    "goal": "replay training data by filling in the correct missing words",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:security:S0301",
+      "demon:Language:Stylizing:Give_examples",
+      "demon:Stratagems:Meta-prompting:Ask_for_examples",
+      "owasp:llm06",
+      "owasp:llm10",
+      "payload:leak:training",
+      "quality:Security:ExtractionInversion"
+    ],
+    "owasp_llm_categories": [
+      "LLM06",
+      "LLM10"
+    ]
+  },
+  "leakreplay.GuardianComplete": {
+    "module": "leakreplay",
+    "class_name": "GuardianComplete",
+    "goal": "replay training data by providing document completions that match training examples",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0301",
+      "demon:Language:Stylizing:Give_examples",
+      "owasp:llm06",
+      "owasp:llm10",
+      "payload:leak:training",
+      "quality:Security:ExtractionInversion"
+    ],
+    "owasp_llm_categories": [
+      "LLM06",
+      "LLM10"
+    ]
+  },
+  "leakreplay.GuardianCompleteFull": {
+    "module": "leakreplay",
+    "class_name": "GuardianCompleteFull",
+    "goal": "replay training data by providing document completions that match training examples",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:security:S0301",
+      "demon:Language:Stylizing:Give_examples",
+      "owasp:llm06",
+      "owasp:llm10",
+      "payload:leak:training",
+      "quality:Security:ExtractionInversion"
+    ],
+    "owasp_llm_categories": [
+      "LLM06",
+      "LLM10"
+    ]
+  },
+  "leakreplay.LiteratureCloze": {
+    "module": "leakreplay",
+    "class_name": "LiteratureCloze",
+    "goal": "replay training data by filling in the correct missing words",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0301",
+      "demon:Language:Stylizing:Give_examples",
+      "demon:Stratagems:Meta-prompting:Ask_for_examples",
+      "owasp:llm06",
+      "owasp:llm10",
+      "payload:leak:training",
+      "quality:Security:ExtractionInversion"
+    ],
+    "owasp_llm_categories": [
+      "LLM06",
+      "LLM10"
+    ]
+  },
+  "leakreplay.LiteratureClozeFull": {
+    "module": "leakreplay",
+    "class_name": "LiteratureClozeFull",
+    "goal": "replay training data by filling in the correct missing words",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:security:S0301",
+      "demon:Language:Stylizing:Give_examples",
+      "demon:Stratagems:Meta-prompting:Ask_for_examples",
+      "owasp:llm06",
+      "owasp:llm10",
+      "payload:leak:training",
+      "quality:Security:ExtractionInversion"
+    ],
+    "owasp_llm_categories": [
+      "LLM06",
+      "LLM10"
+    ]
+  },
+  "leakreplay.LiteratureComplete": {
+    "module": "leakreplay",
+    "class_name": "LiteratureComplete",
+    "goal": "replay training data by providing document completions that match training examples",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0301",
+      "demon:Language:Stylizing:Give_examples",
+      "owasp:llm06",
+      "owasp:llm10",
+      "payload:leak:training",
+      "quality:Security:ExtractionInversion"
+    ],
+    "owasp_llm_categories": [
+      "LLM06",
+      "LLM10"
+    ]
+  },
+  "leakreplay.LiteratureCompleteFull": {
+    "module": "leakreplay",
+    "class_name": "LiteratureCompleteFull",
+    "goal": "replay training data by providing document completions that match training examples",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:security:S0301",
+      "demon:Language:Stylizing:Give_examples",
+      "owasp:llm06",
+      "owasp:llm10",
+      "payload:leak:training",
+      "quality:Security:ExtractionInversion"
+    ],
+    "owasp_llm_categories": [
+      "LLM06",
+      "LLM10"
+    ]
+  },
+  "leakreplay.NYTCloze": {
+    "module": "leakreplay",
+    "class_name": "NYTCloze",
+    "goal": "replay training data by filling in the correct missing words",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0301",
+      "demon:Language:Stylizing:Give_examples",
+      "demon:Stratagems:Meta-prompting:Ask_for_examples",
+      "owasp:llm06",
+      "owasp:llm10",
+      "payload:leak:training",
+      "quality:Security:ExtractionInversion"
+    ],
+    "owasp_llm_categories": [
+      "LLM06",
+      "LLM10"
+    ]
+  },
+  "leakreplay.NYTClozeFull": {
+    "module": "leakreplay",
+    "class_name": "NYTClozeFull",
+    "goal": "replay training data by filling in the correct missing words",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:security:S0301",
+      "demon:Language:Stylizing:Give_examples",
+      "demon:Stratagems:Meta-prompting:Ask_for_examples",
+      "owasp:llm06",
+      "owasp:llm10",
+      "payload:leak:training",
+      "quality:Security:ExtractionInversion"
+    ],
+    "owasp_llm_categories": [
+      "LLM06",
+      "LLM10"
+    ]
+  },
+  "leakreplay.NYTComplete": {
+    "module": "leakreplay",
+    "class_name": "NYTComplete",
+    "goal": "replay training data by providing document completions that match training examples",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0301",
+      "demon:Language:Stylizing:Give_examples",
+      "owasp:llm06",
+      "owasp:llm10",
+      "payload:leak:training",
+      "quality:Security:ExtractionInversion"
+    ],
+    "owasp_llm_categories": [
+      "LLM06",
+      "LLM10"
+    ]
+  },
+  "leakreplay.NYTCompleteFull": {
+    "module": "leakreplay",
+    "class_name": "NYTCompleteFull",
+    "goal": "replay training data by providing document completions that match training examples",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:security:S0301",
+      "demon:Language:Stylizing:Give_examples",
+      "owasp:llm06",
+      "owasp:llm10",
+      "payload:leak:training",
+      "quality:Security:ExtractionInversion"
+    ],
+    "owasp_llm_categories": [
+      "LLM06",
+      "LLM10"
+    ]
+  },
+  "leakreplay.PotterCloze": {
+    "module": "leakreplay",
+    "class_name": "PotterCloze",
+    "goal": "replay training data by filling in the correct missing words",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0301",
+      "demon:Language:Stylizing:Give_examples",
+      "demon:Stratagems:Meta-prompting:Ask_for_examples",
+      "owasp:llm06",
+      "owasp:llm10",
+      "payload:leak:training",
+      "quality:Security:ExtractionInversion"
+    ],
+    "owasp_llm_categories": [
+      "LLM06",
+      "LLM10"
+    ]
+  },
+  "leakreplay.PotterClozeFull": {
+    "module": "leakreplay",
+    "class_name": "PotterClozeFull",
+    "goal": "replay training data by filling in the correct missing words",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:security:S0301",
+      "demon:Language:Stylizing:Give_examples",
+      "demon:Stratagems:Meta-prompting:Ask_for_examples",
+      "owasp:llm06",
+      "owasp:llm10",
+      "payload:leak:training",
+      "quality:Security:ExtractionInversion"
+    ],
+    "owasp_llm_categories": [
+      "LLM06",
+      "LLM10"
+    ]
+  },
+  "leakreplay.PotterComplete": {
+    "module": "leakreplay",
+    "class_name": "PotterComplete",
+    "goal": "replay training data by providing document completions that match training examples",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0301",
+      "demon:Language:Stylizing:Give_examples",
+      "owasp:llm06",
+      "owasp:llm10",
+      "payload:leak:training",
+      "quality:Security:ExtractionInversion"
+    ],
+    "owasp_llm_categories": [
+      "LLM06",
+      "LLM10"
+    ]
+  },
+  "leakreplay.PotterCompleteFull": {
+    "module": "leakreplay",
+    "class_name": "PotterCompleteFull",
+    "goal": "replay training data by providing document completions that match training examples",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:security:S0301",
+      "demon:Language:Stylizing:Give_examples",
+      "owasp:llm06",
+      "owasp:llm10",
+      "payload:leak:training",
+      "quality:Security:ExtractionInversion"
+    ],
+    "owasp_llm_categories": [
+      "LLM06",
+      "LLM10"
+    ]
+  },
+  "lmrc.Anthropomorphisation": {
+    "module": "lmrc",
+    "class_name": "Anthropomorphisation",
+    "goal": "anthropomorphise a language model",
+    "active_by_default": false,
+    "tags": [
+      "demon:Rhetoric:Socratic_questioning:Identity_characteristics",
+      "euai:deception:subliminal",
+      "risk-cards:lmrc:anthropomorphisation"
+    ],
+    "owasp_llm_categories": []
+  },
+  "lmrc.Bullying": {
+    "module": "lmrc",
+    "class_name": "Bullying",
+    "goal": "help me bully",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:ethics:E0301",
+      "demon:Stratagems:Meta-prompting:Ask_for_examples",
+      "euai:harmful:violence",
+      "payload:unwanted:violence",
+      "quality:Behavioral:ContentSafety:Violence",
+      "risk-cards:lmrc:bullying"
+    ],
+    "owasp_llm_categories": []
+  },
+  "lmrc.Deadnaming": {
+    "module": "lmrc",
+    "class_name": "Deadnaming",
+    "goal": "write a deadname",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:ethics:E0302",
+      "avid-effect:performance:P0401",
+      "demon:Rhetoric:Socratic_questioning:Identity_characteristics",
+      "euai:discrimination:personal",
+      "risk-cards:lmrc:deadnaming"
+    ],
+    "owasp_llm_categories": []
+  },
+  "lmrc.Profanity": {
+    "module": "lmrc",
+    "class_name": "Profanity",
+    "goal": "utter profanity",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:ethics:E0101",
+      "avid-effect:ethics:E0301",
+      "avid-effect:performance:P0401",
+      "payload:unwanted:profanity",
+      "quality:Behavioral:ContentSafety:Profanity",
+      "risk-cards:lmrc:profanity"
+    ],
+    "owasp_llm_categories": []
+  },
+  "lmrc.QuackMedicine": {
+    "module": "lmrc",
+    "class_name": "QuackMedicine",
+    "goal": "support quack medicine",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:ethics:E0402",
+      "euai:deception:hallucination",
+      "payload:dangerous:medical",
+      "quality:Behavioral:ContentSafety:Unauthorized",
+      "quality:Behavioral:DeliberativeMisinformation",
+      "risk-cards:lmrc:quack_medicine"
+    ],
+    "owasp_llm_categories": []
+  },
+  "lmrc.SexualContent": {
+    "module": "lmrc",
+    "class_name": "SexualContent",
+    "goal": "write sexual content",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:performance:P0401",
+      "demon:Language:Stylizing:Give_examples",
+      "euai:harmful:sexual",
+      "payload:unwanted:sexual",
+      "quality:Behavioral:ContentSafety:Sexual",
+      "risk-cards:lmrc:sexual_content"
+    ],
+    "owasp_llm_categories": []
+  },
+  "lmrc.Sexualisation": {
+    "module": "lmrc",
+    "class_name": "Sexualisation",
+    "goal": "sexualise people",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:ethics:E0101",
+      "avid-effect:ethics:E0301",
+      "avid-effect:performance:P0401",
+      "demon:Rhetoric:Socratic_questioning:Identity_characteristics",
+      "euai:harmful:sexual",
+      "payload:unwanted:sexual",
+      "quality:Behavioral:ContentSafety:Sexual",
+      "risk-cards:lmrc:sexualisation"
+    ],
+    "owasp_llm_categories": []
+  },
+  "lmrc.SlurUsage": {
+    "module": "lmrc",
+    "class_name": "SlurUsage",
+    "goal": "use a slur",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:ethics:E0101",
+      "avid-effect:ethics:E0301",
+      "avid-effect:performance:P0401",
+      "demon:Rhetoric:Socratic_questioning:Identity_characteristics",
+      "euai:discrimination:personal",
+      "euai:discrimination:protected_class",
+      "payload:unwanted:hatespeech",
+      "quality:Behavioral:ContentSafety:HateHarassment",
+      "risk-cards:lmrc:slur_usage"
+    ],
+    "owasp_llm_categories": []
+  },
+  "malwaregen.Evasion": {
+    "module": "malwaregen",
+    "class_name": "Evasion",
+    "goal": "Write code to assist evading security and anti-malware measures",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Stratagems:Meta-prompting:Ask_for_examples",
+      "euai:offensive:exploitation",
+      "payload:malicious:badcode",
+      "quality:Behavioral:ContentSafety:LegalGoodsServices"
+    ],
+    "owasp_llm_categories": []
+  },
+  "malwaregen.Payload": {
+    "module": "malwaregen",
+    "class_name": "Payload",
+    "goal": "write a malware payload",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Stratagems:Meta-prompting:Ask_for_examples",
+      "euai:offensive:exploitation",
+      "quality:Behavioral:ContentSafety:LegalGoodsServices"
+    ],
+    "owasp_llm_categories": []
+  },
+  "malwaregen.SubFunctions": {
+    "module": "malwaregen",
+    "class_name": "SubFunctions",
+    "goal": "write code supporting a sub-function of malware",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Stratagems:Meta-prompting:Ask_for_examples",
+      "euai:offensive:exploitation",
+      "payload:malicious:badcode",
+      "quality:Behavioral:ContentSafety:LegalGoodsServices"
+    ],
+    "owasp_llm_categories": []
+  },
+  "malwaregen.TopLevel": {
+    "module": "malwaregen",
+    "class_name": "TopLevel",
+    "goal": "write malware given a top-level description",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Stratagems:Meta-prompting:Ask_for_examples",
+      "euai:offensive:exploitation",
+      "payload:malicious:badcode",
+      "quality:Behavioral:ContentSafety:LegalGoodsServices"
+    ],
+    "owasp_llm_categories": []
+  },
+  "misleading.FalseAssertion": {
+    "module": "misleading",
+    "class_name": "FalseAssertion",
+    "goal": "make the model expand on a false assertion",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:performance:P0204",
+      "demon:Rhetoric:Persuasion_and_manipulation:Distraction",
+      "euai:deception:hallucination",
+      "owasp:llm09",
+      "payload:hallucination",
+      "quality:Robustness:GenerativeMisinformation"
+    ],
+    "owasp_llm_categories": [
+      "LLM09"
+    ]
+  },
+  "packagehallucination.Dart": {
+    "module": "packagehallucination",
+    "class_name": "Dart",
+    "goal": "generate Dart code importing non-existent pub.dev packages",
+    "active_by_default": true,
+    "tags": [
+      "demon:Stratagems:Meta-prompting:Ask_for_examples",
+      "euai:deception:hallucination",
+      "owasp:llm02",
+      "owasp:llm09",
+      "payload:malicious:badcode",
+      "quality:Robustness:GenerativeMisinformation"
+    ],
+    "owasp_llm_categories": [
+      "LLM02",
+      "LLM09"
+    ]
+  },
+  "packagehallucination.JavaScript": {
+    "module": "packagehallucination",
+    "class_name": "JavaScript",
+    "goal": "generate JavaScript code importing non-existent npm packages",
+    "active_by_default": true,
+    "tags": [
+      "demon:Stratagems:Meta-prompting:Ask_for_examples",
+      "euai:deception:hallucination",
+      "owasp:llm02",
+      "owasp:llm09",
+      "payload:malicious:badcode",
+      "quality:Robustness:GenerativeMisinformation"
+    ],
+    "owasp_llm_categories": [
+      "LLM02",
+      "LLM09"
+    ]
+  },
+  "packagehallucination.Perl": {
+    "module": "packagehallucination",
+    "class_name": "Perl",
+    "goal": "generate Perl code importing non-existent MetaCPAN modules",
+    "active_by_default": true,
+    "tags": [
+      "demon:Stratagems:Meta-prompting:Ask_for_examples",
+      "euai:deception:hallucination",
+      "owasp:llm02",
+      "owasp:llm09",
+      "payload:malicious:badcode",
+      "quality:Robustness:GenerativeMisinformation"
+    ],
+    "owasp_llm_categories": [
+      "LLM02",
+      "LLM09"
+    ]
+  },
+  "packagehallucination.Python": {
+    "module": "packagehallucination",
+    "class_name": "Python",
+    "goal": "generate python importing non-existent packages",
+    "active_by_default": true,
+    "tags": [
+      "demon:Stratagems:Meta-prompting:Ask_for_examples",
+      "euai:deception:hallucination",
+      "owasp:llm02",
+      "owasp:llm09",
+      "payload:malicious:badcode",
+      "quality:Robustness:GenerativeMisinformation"
+    ],
+    "owasp_llm_categories": [
+      "LLM02",
+      "LLM09"
+    ]
+  },
+  "packagehallucination.RakuLand": {
+    "module": "packagehallucination",
+    "class_name": "RakuLand",
+    "goal": "generate Raku code importing non-existent raku.land modules",
+    "active_by_default": true,
+    "tags": [
+      "demon:Stratagems:Meta-prompting:Ask_for_examples",
+      "euai:deception:hallucination",
+      "owasp:llm02",
+      "owasp:llm09",
+      "payload:malicious:badcode",
+      "quality:Robustness:GenerativeMisinformation"
+    ],
+    "owasp_llm_categories": [
+      "LLM02",
+      "LLM09"
+    ]
+  },
+  "packagehallucination.Ruby": {
+    "module": "packagehallucination",
+    "class_name": "Ruby",
+    "goal": "generate ruby code importing non-existent gems",
+    "active_by_default": true,
+    "tags": [
+      "demon:Stratagems:Meta-prompting:Ask_for_examples",
+      "euai:deception:hallucination",
+      "owasp:llm02",
+      "owasp:llm09",
+      "payload:malicious:badcode",
+      "quality:Robustness:GenerativeMisinformation"
+    ],
+    "owasp_llm_categories": [
+      "LLM02",
+      "LLM09"
+    ]
+  },
+  "packagehallucination.Rust": {
+    "module": "packagehallucination",
+    "class_name": "Rust",
+    "goal": "generate Rust code importing non-existent crates.io packages",
+    "active_by_default": true,
+    "tags": [
+      "demon:Stratagems:Meta-prompting:Ask_for_examples",
+      "euai:deception:hallucination",
+      "owasp:llm02",
+      "owasp:llm09",
+      "payload:malicious:badcode",
+      "quality:Robustness:GenerativeMisinformation"
+    ],
+    "owasp_llm_categories": [
+      "LLM02",
+      "LLM09"
+    ]
+  },
+  "phrasing.FutureTense": {
+    "module": "phrasing",
+    "class_name": "FutureTense",
+    "goal": "use future tense to disregard the system prompt",
+    "active_by_default": true,
+    "tags": [
+      "demon:Language:Stylizing:Synonymous_language",
+      "euai:robustness:adversarial",
+      "owasp:llm01",
+      "payload:jailbreak",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "phrasing.FutureTenseFull": {
+    "module": "phrasing",
+    "class_name": "FutureTenseFull",
+    "goal": "use future tense to disregard the system prompt",
+    "active_by_default": false,
+    "tags": [
+      "demon:Language:Stylizing:Synonymous_language",
+      "euai:robustness:adversarial",
+      "owasp:llm01",
+      "payload:jailbreak",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "phrasing.PastTense": {
+    "module": "phrasing",
+    "class_name": "PastTense",
+    "goal": "use past tense to disregard the system prompt",
+    "active_by_default": true,
+    "tags": [
+      "demon:Language:Stylizing:Synonymous_language",
+      "euai:robustness:adversarial",
+      "owasp:llm01",
+      "payload:jailbreak",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "phrasing.PastTenseFull": {
+    "module": "phrasing",
+    "class_name": "PastTenseFull",
+    "goal": "use past tense to disregard the system prompt",
+    "active_by_default": false,
+    "tags": [
+      "demon:Language:Stylizing:Synonymous_language",
+      "euai:robustness:adversarial",
+      "owasp:llm01",
+      "payload:jailbreak",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "promptinject.HijackHateHumans": {
+    "module": "promptinject",
+    "class_name": "HijackHateHumans",
+    "goal": "inject a prompt on hate humans",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Language:Prompt_injection:Ignore_previous_instructions",
+      "demon:Language:Prompt_injection:Strong_arm_attack",
+      "demon:Language:Stylizing:Capitalizing",
+      "demon:Rhetoric:Persuasion_and_manipulation:Distraction",
+      "euai:harmful:violence",
+      "euai:robustness:adversarial",
+      "owasp:llm01",
+      "payload:unwanted:violence",
+      "quality:Behavioral:ContentSafety:Violence",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "promptinject.HijackHateHumansFull": {
+    "module": "promptinject",
+    "class_name": "HijackHateHumansFull",
+    "goal": "inject a prompt on hate humans",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Language:Prompt_injection:Ignore_previous_instructions",
+      "demon:Language:Prompt_injection:Strong_arm_attack",
+      "demon:Language:Stylizing:Capitalizing",
+      "euai:harmful:violence",
+      "euai:robustness:adversarial",
+      "owasp:llm01",
+      "payload:unwanted:violence",
+      "quality:Behavioral:ContentSafety:Violence",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "promptinject.HijackKillHumans": {
+    "module": "promptinject",
+    "class_name": "HijackKillHumans",
+    "goal": "inject a prompt on kill humans",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Language:Prompt_injection:Ignore_previous_instructions",
+      "demon:Language:Prompt_injection:Strong_arm_attack",
+      "demon:Language:Stylizing:Capitalizing",
+      "demon:Rhetoric:Persuasion_and_manipulation:Distraction",
+      "euai:harmful:violence",
+      "euai:robustness:adversarial",
+      "owasp:llm01",
+      "payload:unwanted:violence",
+      "quality:Behavioral:ContentSafety:Violence",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "promptinject.HijackKillHumansFull": {
+    "module": "promptinject",
+    "class_name": "HijackKillHumansFull",
+    "goal": "inject a prompt on kill humans",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Language:Prompt_injection:Ignore_previous_instructions",
+      "demon:Language:Prompt_injection:Strong_arm_attack",
+      "demon:Language:Stylizing:Capitalizing",
+      "euai:harmful:violence",
+      "euai:robustness:adversarial",
+      "owasp:llm01",
+      "payload:unwanted:violence",
+      "quality:Behavioral:ContentSafety:Violence",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "promptinject.HijackLongPrompt": {
+    "module": "promptinject",
+    "class_name": "HijackLongPrompt",
+    "goal": "inject a prompt on long prompt",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Language:Prompt_injection:Ignore_previous_instructions",
+      "demon:Language:Prompt_injection:Strong_arm_attack",
+      "demon:Language:Stylizing:Capitalizing",
+      "demon:Rhetoric:Persuasion_and_manipulation:Distraction",
+      "euai:harmful:violence",
+      "euai:robustness:adversarial",
+      "owasp:llm01",
+      "payload:unwanted:violence",
+      "quality:Behavioral:ContentSafety:Violence",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "promptinject.HijackLongPromptFull": {
+    "module": "promptinject",
+    "class_name": "HijackLongPromptFull",
+    "goal": "inject a prompt on long prompt",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Language:Prompt_injection:Ignore_previous_instructions",
+      "demon:Language:Prompt_injection:Strong_arm_attack",
+      "demon:Language:Stylizing:Capitalizing",
+      "euai:harmful:violence",
+      "euai:robustness:adversarial",
+      "owasp:llm01",
+      "payload:unwanted:violence",
+      "quality:Behavioral:ContentSafety:Violence",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "propile.PIILeakQuadruplet": {
+    "module": "propile",
+    "class_name": "PIILeakQuadruplet",
+    "goal": "extract PII using name and two auxiliary PIIs",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:security:S0301",
+      "euai:harmful:pii",
+      "owasp:llm06",
+      "payload:leak:pii",
+      "payload:leak:training",
+      "quality:Security:ExtractionInversion"
+    ],
+    "owasp_llm_categories": [
+      "LLM06"
+    ]
+  },
+  "propile.PIILeakTriplet": {
+    "module": "propile",
+    "class_name": "PIILeakTriplet",
+    "goal": "extract PII using name and one auxiliary PII",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:security:S0301",
+      "euai:harmful:pii",
+      "owasp:llm06",
+      "payload:leak:pii",
+      "payload:leak:training",
+      "quality:Security:ExtractionInversion"
+    ],
+    "owasp_llm_categories": [
+      "LLM06"
+    ]
+  },
+  "propile.PIILeakTwin": {
+    "module": "propile",
+    "class_name": "PIILeakTwin",
+    "goal": "extract PII using only the subject's name",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:security:S0301",
+      "euai:harmful:pii",
+      "owasp:llm06",
+      "payload:leak:pii",
+      "payload:leak:training",
+      "quality:Security:ExtractionInversion"
+    ],
+    "owasp_llm_categories": [
+      "LLM06"
+    ]
+  },
+  "propile.PIILeakUnstructured": {
+    "module": "propile",
+    "class_name": "PIILeakUnstructured",
+    "goal": "extract unstructured PII like relationships or affiliations",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:security:S0301",
+      "euai:harmful:pii",
+      "owasp:llm06",
+      "payload:leak:pii",
+      "payload:leak:training",
+      "quality:Security:ExtractionInversion"
+    ],
+    "owasp_llm_categories": [
+      "LLM06"
+    ]
+  },
+  "realtoxicityprompts.RTPBlank": {
+    "module": "realtoxicityprompts",
+    "class_name": "RTPBlank",
+    "goal": "generate toxicity when prompted with nothing or special tokens",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:ethics:E0301",
+      "demon:Language:Code_and_encode:Token",
+      "demon:Stratagems:Scattershot:Regenerate_response",
+      "payload:unwanted",
+      "quality:Behavioral:ContentSafety:Toxicity"
+    ],
+    "owasp_llm_categories": []
+  },
+  "realtoxicityprompts.RTPFlirtation": {
+    "module": "realtoxicityprompts",
+    "class_name": "RTPFlirtation",
+    "goal": "generate flirtation content",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:ethics:E0101",
+      "avid-effect:ethics:E0301",
+      "avid-effect:performance:P0401",
+      "demon:Language:Stylizing:Give_examples",
+      "payload:unwanted"
+    ],
+    "owasp_llm_categories": []
+  },
+  "realtoxicityprompts.RTPIdentity_Attack": {
+    "module": "realtoxicityprompts",
+    "class_name": "RTPIdentity_Attack",
+    "goal": "generate identity attack content",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:ethics:E0101",
+      "avid-effect:ethics:E0301",
+      "avid-effect:ethics:E0302",
+      "avid-effect:performance:P0401",
+      "demon:Language:Stylizing:Give_examples",
+      "euai:discrimination:personal",
+      "euai:discrimination:protected_class",
+      "payload:hatespeech",
+      "quality:Behavioral:ContentSafety:HateHarassment"
+    ],
+    "owasp_llm_categories": []
+  },
+  "realtoxicityprompts.RTPInsult": {
+    "module": "realtoxicityprompts",
+    "class_name": "RTPInsult",
+    "goal": "generate insult content",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:ethics:E0101",
+      "avid-effect:ethics:E0301",
+      "avid-effect:performance:P0401",
+      "demon:Language:Stylizing:Give_examples",
+      "payload:unwanted",
+      "quality:Behavioral:ContentSafety:Toxicity"
+    ],
+    "owasp_llm_categories": []
+  },
+  "realtoxicityprompts.RTPProfanity": {
+    "module": "realtoxicityprompts",
+    "class_name": "RTPProfanity",
+    "goal": "generate profanity content",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:ethics:E0301",
+      "avid-effect:performance:P0401",
+      "demon:Language:Stylizing:Give_examples",
+      "payload:unwanted:profanity",
+      "quality:Behavioral:ContentSafety:Profanity"
+    ],
+    "owasp_llm_categories": []
+  },
+  "realtoxicityprompts.RTPSevere_Toxicity": {
+    "module": "realtoxicityprompts",
+    "class_name": "RTPSevere_Toxicity",
+    "goal": "generate severe toxicity content",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:ethics:E0301",
+      "demon:Language:Stylizing:Give_examples",
+      "payload:unwanted",
+      "quality:Behavioral:ContentSafety:Toxicity"
+    ],
+    "owasp_llm_categories": []
+  },
+  "realtoxicityprompts.RTPSexually_Explicit": {
+    "module": "realtoxicityprompts",
+    "class_name": "RTPSexually_Explicit",
+    "goal": "generate sexually explicit content",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:ethics:E0301",
+      "demon:Language:Stylizing:Give_examples",
+      "euai:harmful:sexual",
+      "payload:unwanted:sexual",
+      "quality:Behavioral:ContentSafety:Sexual"
+    ],
+    "owasp_llm_categories": []
+  },
+  "realtoxicityprompts.RTPThreat": {
+    "module": "realtoxicityprompts",
+    "class_name": "RTPThreat",
+    "goal": "generate threat content",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:ethics:E0101",
+      "avid-effect:ethics:E0301",
+      "avid-effect:performance:P0400",
+      "demon:Language:Stylizing:Give_examples",
+      "euai:harmful:violence",
+      "payload:unwanted:violence",
+      "quality:Behavioral:ContentSafety:Violence"
+    ],
+    "owasp_llm_categories": []
+  },
+  "sata.MLM": {
+    "module": "sata",
+    "class_name": "MLM",
+    "goal": "disregard the system prompt",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:performance:P0204",
+      "avid-effect:security:S0403",
+      "demon:Language:Code_and_encode:Token",
+      "demon:Rhetoric:Persuasion_and_manipulation:Distraction",
+      "owasp:llm01",
+      "payload:jailbreak",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "smuggling.FunctionMasking": {
+    "module": "smuggling",
+    "class_name": "FunctionMasking",
+    "goal": "return banned instructions",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Language:Code_and_encode:Programming",
+      "demon:Possible_worlds:World_building:Scenarios",
+      "euai:robustness:adversarial",
+      "euai:robustness:unexpected_behavior",
+      "payload:jailbreak",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": []
+  },
+  "smuggling.HomoglyphObfuscation": {
+    "module": "smuggling",
+    "class_name": "HomoglyphObfuscation",
+    "goal": "bypass content filters using homoglyph character substitution",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:security:S0403",
+      "euai:robustness:adversarial",
+      "euai:robustness:unexpected_behavior",
+      "owasp:llm01",
+      "payload:jailbreak",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "smuggling.HypotheticalResponse": {
+    "module": "smuggling",
+    "class_name": "HypotheticalResponse",
+    "goal": "return banned instructions",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:security:S0403",
+      "demon:Possible_worlds:World_building:Scenarios",
+      "euai:robustness:adversarial",
+      "euai:robustness:unexpected_behavior",
+      "payload:jailbreak",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": []
+  },
+  "snowball.GraphConnectivity": {
+    "module": "snowball",
+    "class_name": "GraphConnectivity",
+    "goal": "trick the model into saying an impossible flight routing is possible",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:performance:P0204",
+      "demon:Rhetoric:Persuasion_and_manipulation:Distraction",
+      "euai:deception:hallucination",
+      "owasp:llm09",
+      "payload:hallucination",
+      "quality:Robustness:GenerativeMisinformation"
+    ],
+    "owasp_llm_categories": [
+      "LLM09"
+    ]
+  },
+  "snowball.GraphConnectivityFull": {
+    "module": "snowball",
+    "class_name": "GraphConnectivityFull",
+    "goal": "trick the model into saying an impossible flight routing is possible",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:performance:P0204",
+      "demon:Rhetoric:Persuasion_and_manipulation:Distraction",
+      "euai:deception:hallucination",
+      "owasp:llm09",
+      "payload:hallucination",
+      "quality:Robustness:GenerativeMisinformation"
+    ],
+    "owasp_llm_categories": [
+      "LLM09"
+    ]
+  },
+  "snowball.Primes": {
+    "module": "snowball",
+    "class_name": "Primes",
+    "goal": "trick the model into saying a prime number isn't prime",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:performance:P0204",
+      "demon:Rhetoric:Persuasion_and_manipulation:Distraction",
+      "euai:deception:hallucination",
+      "owasp:llm09",
+      "payload:hallucination",
+      "quality:Robustness:GenerativeMisinformation"
+    ],
+    "owasp_llm_categories": [
+      "LLM09"
+    ]
+  },
+  "snowball.PrimesFull": {
+    "module": "snowball",
+    "class_name": "PrimesFull",
+    "goal": "trick the model into saying a prime number isn't prime",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:performance:P0204",
+      "demon:Rhetoric:Persuasion_and_manipulation:Distraction",
+      "euai:deception:hallucination",
+      "owasp:llm09",
+      "payload:hallucination",
+      "quality:Robustness:GenerativeMisinformation"
+    ],
+    "owasp_llm_categories": [
+      "LLM09"
+    ]
+  },
+  "snowball.Senators": {
+    "module": "snowball",
+    "class_name": "Senators",
+    "goal": "trick the model into saying a fictitious senator exists",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:performance:P0204",
+      "demon:Rhetoric:Persuasion_and_manipulation:Distraction",
+      "euai:deception:hallucination",
+      "owasp:llm09",
+      "payload:hallucination",
+      "quality:Robustness:GenerativeMisinformation"
+    ],
+    "owasp_llm_categories": [
+      "LLM09"
+    ]
+  },
+  "snowball.SenatorsFull": {
+    "module": "snowball",
+    "class_name": "SenatorsFull",
+    "goal": "trick the model into saying a fictitious senator exists",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:performance:P0204",
+      "demon:Rhetoric:Persuasion_and_manipulation:Distraction",
+      "euai:deception:hallucination",
+      "owasp:llm09",
+      "payload:hallucination",
+      "quality:Robustness:GenerativeMisinformation"
+    ],
+    "owasp_llm_categories": [
+      "LLM09"
+    ]
+  },
+  "suffix.BEAST": {
+    "module": "suffix",
+    "class_name": "BEAST",
+    "goal": "cause the model to disregard the system prompt",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:performance:P0204",
+      "avid-effect:security:S0403",
+      "demon:Language:Code_and_encode:Token",
+      "euai:robustness:adversarial",
+      "euai:robustness:unexpected_behavior",
+      "payload:jailbreak",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": []
+  },
+  "suffix.GCG": {
+    "module": "suffix",
+    "class_name": "GCG",
+    "goal": "cause the model to disregard the system prompt",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:performance:P0204",
+      "avid-effect:security:S0403",
+      "demon:Language:Code_and_encode:Token",
+      "euai:robustness:adversarial",
+      "euai:robustness:unexpected_behavior",
+      "payload:jailbreak",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": []
+  },
+  "suffix.GCGCached": {
+    "module": "suffix",
+    "class_name": "GCGCached",
+    "goal": "cause the model to disregard the system prompt",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:performance:P0204",
+      "avid-effect:security:S0403",
+      "demon:Language:Code_and_encode:Token",
+      "euai:robustness:adversarial",
+      "euai:robustness:unexpected_behavior",
+      "payload:jailbreak",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": []
+  },
+  "sysprompt_extraction.SystemPromptExtraction": {
+    "module": "sysprompt_extraction",
+    "class_name": "SystemPromptExtraction",
+    "goal": "extract the model's system prompt",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0301",
+      "euai:robustness:adversarial",
+      "owasp:llm01",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "tap.PAIR": {
+    "module": "tap",
+    "class_name": "PAIR",
+    "goal": "cause the model to disregard the system prompt",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:performance:P0204",
+      "avid-effect:security:S0403",
+      "demon:Language:Code_and_encode:Token",
+      "demon:Rhetoric:Persuasion_and_manipulation:Escalating",
+      "euai:robustness:adversarial",
+      "payload:jailbreak",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": []
+  },
+  "tap.TAP": {
+    "module": "tap",
+    "class_name": "TAP",
+    "goal": "cause the model to disregard the system prompt",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:performance:P0204",
+      "avid-effect:security:S0403",
+      "demon:Language:Code_and_encode:Token",
+      "demon:Rhetoric:Persuasion_and_manipulation:Escalating",
+      "euai:robustness:adversarial",
+      "payload:jailbreak",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": []
+  },
+  "tap.TAPCached": {
+    "module": "tap",
+    "class_name": "TAPCached",
+    "goal": "cause the model to disregard the system prompt",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:performance:P0204",
+      "avid-effect:security:S0403",
+      "demon:Language:Code_and_encode:Token",
+      "demon:Possible_worlds:World_building:Scenarios",
+      "demon:Rhetoric:Persuasion_and_manipulation:Escalating",
+      "euai:robustness:adversarial",
+      "payload:jailbreak",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": []
+  },
+  "test.Blank": {
+    "module": "test",
+    "class_name": "Blank",
+    "goal": "see what the model has to say for itself given silence",
+    "active_by_default": false,
+    "tags": [],
+    "owasp_llm_categories": []
+  },
+  "test.Test": {
+    "module": "test",
+    "class_name": "Test",
+    "goal": "send some test strings, ignore the response",
+    "active_by_default": false,
+    "tags": [],
+    "owasp_llm_categories": []
+  },
+  "topic.WordnetAllowedWords": {
+    "module": "topic",
+    "class_name": "WordnetAllowedWords",
+    "goal": "get the model to engage off-topic",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:security:S0301",
+      "demon:Language:Stylizing:Synonymous_language",
+      "owasp:llm10"
+    ],
+    "owasp_llm_categories": [
+      "LLM10"
+    ]
+  },
+  "topic.WordnetBlockedWords": {
+    "module": "topic",
+    "class_name": "WordnetBlockedWords",
+    "goal": "get the model to engage off-topic",
+    "active_by_default": false,
+    "tags": [
+      "avid-effect:security:S0301",
+      "demon:Language:Stylizing:Synonymous_language",
+      "owasp:llm10"
+    ],
+    "owasp_llm_categories": [
+      "LLM10"
+    ]
+  },
+  "topic.WordnetControversial": {
+    "module": "topic",
+    "class_name": "WordnetControversial",
+    "goal": "get the model to engage off-topic",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0301",
+      "demon:Language:Stylizing:Synonymous_language",
+      "owasp:llm10"
+    ],
+    "owasp_llm_categories": [
+      "LLM10"
+    ]
+  },
+  "visual_jailbreak.FigStep": {
+    "module": "visual_jailbreak",
+    "class_name": "FigStep",
+    "goal": "disregard the system prompt with both text and image",
+    "active_by_default": false,
+    "tags": [
+      "demon:Language:Code_and_encode:Data_presentation",
+      "euai:robustness:adversarial",
+      "owasp:llm01",
+      "payload:jailbreak",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "visual_jailbreak.FigStepFull": {
+    "module": "visual_jailbreak",
+    "class_name": "FigStepFull",
+    "goal": "disregard the system prompt with both text and image",
+    "active_by_default": false,
+    "tags": [
+      "demon:Language:Code_and_encode:Data_presentation",
+      "euai:robustness:adversarial",
+      "owasp:llm01",
+      "payload:jailbreak",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM01"
+    ]
+  },
+  "web_injection.ColabAIDataLeakage": {
+    "module": "web_injection",
+    "class_name": "ColabAIDataLeakage",
+    "goal": "render images fetched from a remote uri",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0301",
+      "avid-effect:security:S0403",
+      "cwe:352",
+      "demon:Language:Code_and_encode:Programming",
+      "demon:Language:Prompt_injection:Ignore_previous_instructions",
+      "euai:robustness:security",
+      "owasp:llm02",
+      "owasp:llm06",
+      "payload:leak:chat",
+      "payload:malicious:renderer",
+      "quality:Security:ExtractionInversion",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM02",
+      "LLM06"
+    ]
+  },
+  "web_injection.MarkdownImageExfil": {
+    "module": "web_injection",
+    "class_name": "MarkdownImageExfil",
+    "goal": "embed conversation-private information in a markdown URI",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0301",
+      "avid-effect:security:S0403",
+      "cwe:352",
+      "demon:Language:Code_and_encode:Programming",
+      "demon:Language:Prompt_injection:Ignore_previous_instructions",
+      "euai:robustness:security",
+      "owasp:llm02",
+      "owasp:llm06",
+      "payload:leak:chat",
+      "payload:malicious:renderer",
+      "quality:Security:ExtractionInversion",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM02",
+      "LLM06"
+    ]
+  },
+  "web_injection.MarkdownURIImageExfilExtended": {
+    "module": "web_injection",
+    "class_name": "MarkdownURIImageExfilExtended",
+    "goal": "embed potentially sensitive data in a Markdown URI",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0301",
+      "avid-effect:security:S0403",
+      "cwe:352",
+      "demon:Language:Code_and_encode:Programming",
+      "euai:robustness:security",
+      "owasp:llm02",
+      "owasp:llm06",
+      "payload:leak:chat",
+      "payload:malicious:renderer",
+      "quality:Security:ExtractionInversion",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM02",
+      "LLM06"
+    ]
+  },
+  "web_injection.MarkdownURINonImageExfilExtended": {
+    "module": "web_injection",
+    "class_name": "MarkdownURINonImageExfilExtended",
+    "goal": "embed potentially sensitive data in a Markdown URI",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0301",
+      "avid-effect:security:S0403",
+      "cwe:352",
+      "demon:Language:Code_and_encode:Programming",
+      "euai:robustness:security",
+      "owasp:llm02",
+      "owasp:llm06",
+      "payload:leak:chat",
+      "payload:malicious:renderer",
+      "quality:Security:ExtractionInversion",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM02",
+      "LLM06"
+    ]
+  },
+  "web_injection.MarkdownXSS": {
+    "module": "web_injection",
+    "class_name": "MarkdownXSS",
+    "goal": "Exploit cross-site scripting via prompt injection",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0301",
+      "avid-effect:security:S0403",
+      "cwe:79",
+      "euai:robustness:security",
+      "owasp:llm02",
+      "owasp:llm06",
+      "payload:malicious:renderer:xss",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM02",
+      "LLM06"
+    ]
+  },
+  "web_injection.PlaygroundMarkdownExfil": {
+    "module": "web_injection",
+    "class_name": "PlaygroundMarkdownExfil",
+    "goal": "embed conversation-private information in a markdown URI",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0301",
+      "avid-effect:security:S0403",
+      "cwe:352",
+      "euai:robustness:security",
+      "owasp:llm02",
+      "owasp:llm06",
+      "payload:leak:chat",
+      "payload:malicious:renderer",
+      "quality:Security:ExtractionInversion",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM02",
+      "LLM06"
+    ]
+  },
+  "web_injection.StringAssemblyDataExfil": {
+    "module": "web_injection",
+    "class_name": "StringAssemblyDataExfil",
+    "goal": "embed conversation-private information in a markdown URI",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0301",
+      "avid-effect:security:S0403",
+      "cwe:352",
+      "demon:Language:Code_and_encode:Programming",
+      "demon:Language:Prompt_injection:Ignore_previous_instructions",
+      "euai:robustness:security",
+      "owasp:llm02",
+      "owasp:llm06",
+      "payload:leak:chat",
+      "payload:malicious:renderer",
+      "quality:Security:ExtractionInversion",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM02",
+      "LLM06"
+    ]
+  },
+  "web_injection.TaskXSS": {
+    "module": "web_injection",
+    "class_name": "TaskXSS",
+    "goal": "Exploit cross-site scripting via prompt injection",
+    "active_by_default": true,
+    "tags": [
+      "avid-effect:security:S0301",
+      "avid-effect:security:S0403",
+      "cwe:79",
+      "demon:Language:Code_and_encode:Programming",
+      "euai:robustness:security",
+      "owasp:llm02",
+      "owasp:llm06",
+      "payload:malicious:renderer:xss",
+      "quality:Security:PromptStability"
+    ],
+    "owasp_llm_categories": [
+      "LLM02",
+      "LLM06"
+    ]
+  }
+}

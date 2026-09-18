@@ -1,0 +1,37 @@
+---
+# Runs Prowler against a cloud account for CIS + NIST 800-53 compliance
+# checks. Typically delegate_to: localhost / a bastion with the cloud
+# credentials already configured in the environment (AWS profile, Azure CLI
+# login, gcloud auth) - Prowler picks those up itself, so this role does not
+# handle credential management.
+
+- name: Ensure local results directory exists
+  ansible.builtin.file:
+    path: "{{ results_root }}/prowler/{{ cloud_provider }}"
+    state: directory
+    mode: "0755"
+
+- name: Confirm prowler is installed and on PATH
+  ansible.builtin.command: prowler --version
+  register: prowler_version_check
+  changed_when: false
+
+- name: Run Prowler compliance scan
+  ansible.builtin.command: >
+    prowler {{ cloud_provider }}
+    --compliance {{ prowler_compliance_frameworks | join(',') }}
+    --output-formats {{ prowler_output_formats }}
+    --output-directory {{ results_root }}/prowler/{{ cloud_provider }}
+    {{ prowler_extra_args }}
+  register: prowler_run
+  changed_when: true
+  failed_when: prowler_run.rc not in [0, 3]
+  # Prowler's CLI returns non-zero exit codes when it finds failed checks -
+  # that's expected and not an Ansible failure. rc 3 is Prowler's own
+  # "scan completed with failed findings" code as of the 4.x line; confirm
+  # against `prowler --help` / release notes for the version you install,
+  # since this has changed across major versions.
+
+- name: Show where results landed
+  ansible.builtin.debug:
+    msg: "Prowler results written to {{ results_root }}/prowler/{{ cloud_provider }}"

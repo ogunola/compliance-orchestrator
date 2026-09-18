@@ -1,0 +1,67 @@
+# owasp_llm_top10_2025.yaml
+#
+# The OWASP LLM/GenAI Top 10 categories, as published at
+# https://genai.owasp.org/llm-top-10/ (fetched 2026-09-18). OWASP's own page
+# labels this list "2025" - some 2026 commentary discusses an upcoming
+# revision, but nothing superseding this list was confirmed available at
+# build time. Re-check genai.owasp.org before assuming this is still current.
+#
+# zt_pillar tags below are curated by this project (not by OWASP or garak) -
+# a starter mapping in the same spirit as data/control_mappings.yaml's
+# overlay, not an authoritative source. AI system risks map onto the
+# existing CISA Zero Trust Maturity Model pillars reasonably well without
+# needing a 9th pillar invented for AI specifically.
+
+categories:
+  LLM01:
+    name: "Prompt Injection"
+    description: "User or indirect input alters model behavior against the deployer's intent."
+    zt_pillar: applications_workloads
+
+  LLM02:
+    name: "Sensitive Information Disclosure"
+    description: "The model exposes confidential data - training data, system prompts, or user data from context."
+    zt_pillar: data
+
+  LLM03:
+    name: "Supply Chain"
+    description: "Vulnerabilities in model, dataset, or dependency provenance and integrity."
+    zt_pillar: applications_workloads
+    # No garak probe carries this tag - it's a provenance/dependency-integrity
+    # risk, not something testable by prompting a running model. See
+    # SOURCES.md.
+
+  LLM04:
+    name: "Data and Model Poisoning"
+    description: "Corrupted training, fine-tuning, or embedding data skews model behavior."
+    zt_pillar: data
+
+  LLM05:
+    name: "Improper Output Handling"
+    description: "Insufficient validation/sanitization of model output before it's used downstream (e.g. rendered, executed, or passed to another system)."
+    zt_pillar: applications_workloads
+
+  LLM06:
+    name: "Excessive Agency"
+    description: "The model (or an agent built on it) is granted more function-calling/tool capability, permissions, or autonomy than the task requires."
+    zt_pillar: identity
+
+  LLM07:
+    name: "System Prompt Leakage"
+    description: "Hidden system instructions, guardrails, or embedded secrets are disclosed to the user."
+    zt_pillar: data
+
+  LLM08:
+    name: "Vector and Embedding Weaknesses"
+    description: "Security gaps in how embeddings/vector stores are generated, stored, or retrieved (e.g. in RAG pipelines)."
+    zt_pillar: data
+
+  LLM09:
+    name: "Misinformation"
+    description: "The model generates false, misleading, or fabricated content (including hallucinated facts, citations, or software packages) presented as reliable."
+    zt_pillar: visibility_analytics
+
+  LLM10:
+    name: "Unbounded Consumption"
+    description: "Uncontrolled resource usage - excessive inference calls, context length, or compute - leading to cost/availability impact (a GenAI-specific denial-of-service/resource-exhaustion risk)."
+    zt_pillar: networks

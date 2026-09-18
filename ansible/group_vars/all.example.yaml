@@ -1,0 +1,52 @@
+# Copy to all.yaml (gitignored) and fill in real values / secrets.
+# Prefer ansible-vault for anything sensitive:
+#   ansible-vault encrypt_string 'supersecret' --name 'caldera_api_key'
+
+results_root: "{{ playbook_dir }}/../../results"   # where raw tool output lands on the CONTROL NODE
+
+# --- Caldera (ATT&CK emulation) ---
+caldera_url: "http://127.0.0.1:8888"
+caldera_api_key: "CHANGE_ME"
+caldera_adversary_id: "CHANGE_ME"        # adversary profile to run
+caldera_group: "red"                     # target agent group in Caldera
+caldera_poll_interval_sec: 10
+caldera_poll_timeout_sec: 1800
+
+# --- Atomic Red Team ---
+atomic_runner: powershell                # powershell | atomic_operator
+atomic_techniques:
+  - T1078
+  - T1059
+  - T1053
+atomic_redteam_repo_path_windows: "C:\\AtomicRedTeam"
+atomic_redteam_repo_path_linux: "/opt/atomic-red-team"
+
+# --- Prowler (cloud CIS/NIST checks) ---
+cloud_provider: aws                      # aws | azure | gcp
+prowler_compliance_frameworks:
+  - cis_2.0_aws
+  - nist_800_53_revision_5_aws
+prowler_output_formats: "json-ocsf,csv"
+
+# --- OpenSCAP (host-level CIS/STIG checks) ---
+oscap_datastream: "/usr/share/xml/scap/ssg/content/ssg-rhel9-ds.xml"
+oscap_profile: "xccdf_org.ssgproject.content_profile_cis"
+
+# --- PingCastle (AD / Zero Trust identity pillar) ---
+ad_domain: "lab.local"
+pingcastle_exe_path: "C:\\Tools\\PingCastle\\PingCastle.exe"
+
+# --- garak (AI red-teaming / OWASP LLM Top 10) ---
+# ONLY point this at a model/endpoint you are authorized to test - see the
+# responsible-use note in ansible/roles/garak_scan/tasks/main.yml.
+# Credentials (e.g. an API key) go in environment variables per garak's own
+# generator docs (e.g. OPENAI_API_KEY), NOT in this file.
+garak_target_type: "openai.OpenAICompatible"
+garak_target_name: "CHANGE_ME"
+garak_probes:
+  - dan
+  - promptinject
+  - leakreplay
+  - packagehallucination
+  - encoding
+garak_generations: 5

@@ -1,0 +1,6 @@
+---
+oscap_datastream: "/usr/share/xml/scap/ssg/content/ssg-rhel9-ds.xml"
+oscap_profile: "xccdf_org.ssgproject.content_profile_cis"
+oscap_packages:
+  - openscap-scanner
+  - scap-security-guide

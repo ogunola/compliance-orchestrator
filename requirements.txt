@@ -1,0 +1,13 @@
+# Python side: aggregation, mapping, and reporting only.
+# Tool execution itself is handled by Ansible (see ansible/requirements.yml
+# and ansible/requirements.txt for what the *control node* needs).
+
+PyYAML>=6.0
+rich>=13.7          # console tables/summary output
+pandas>=2.2          # CSV/XLSX export of rolled-up findings
+openpyxl>=3.1        # xlsx writer engine for pandas
+lxml>=5.2            # fast/robust XML parsing for OpenSCAP + PingCastle reports
+click>=8.1           # CLI
+requests>=2.31       # Vanta API connector
+pytest>=8.0          # tests
+pytest-mock>=3.12    # mocked HTTP in connector tests

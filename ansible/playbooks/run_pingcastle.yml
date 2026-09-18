@@ -1,0 +1,7 @@
+---
+- name: Run PingCastle AD health check (Zero Trust identity pillar)
+  hosts: ad_scan_host
+  gather_facts: false
+  roles:
+    - pingcastle_scan
+  tags: [pingcastle, zerotrust, identity]

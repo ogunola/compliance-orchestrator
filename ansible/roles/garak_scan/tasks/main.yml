@@ -1,0 +1,52 @@
+---
+# Runs garak (LLM vulnerability scanner) against a target model/endpoint and
+# writes its native .report.jsonl into results/garak/<target>/, where
+# orchestrator/parsers/garak_parser.py picks it up. Runs delegate_to:
+# localhost / a control node with credentials for the target model API
+# configured (an API key env var, a base URL, etc.) - garak itself reads
+# most generator credentials from environment variables (e.g. OPENAI_API_KEY
+# for openai.OpenAICompatible) rather than CLI flags, so set those in the
+# calling shell/CI secrets rather than in this role.
+#
+# RESPONSIBLE USE: only point this at a model/endpoint you are authorized to
+# test. Several garak probes (dan, promptinject, and others) are designed to
+# elicit genuinely harmful, toxic, or policy-violating output as PROOF that a
+# guardrail failed - that's the point of the test, but it means raw
+# .report.jsonl / transcript files can contain that content. Treat results/
+# and report/ai/ the same way you'd treat any other pentest evidence
+# (restricted access, not casually shared), and don't run this against a
+# third party's model without their authorization.
+
+- name: Ensure local results directory exists
+  ansible.builtin.file:
+    path: "{{ results_root }}/garak/{{ garak_target_name | replace('/', '_') }}"
+    state: directory
+    mode: "0755"
+
+- name: Confirm garak is installed and on PATH
+  ansible.builtin.command: garak --version
+  register: garak_version_check
+  changed_when: false
+
+- name: Run garak against the target
+  ansible.builtin.command: >
+    garak
+    --target_type {{ garak_target_type }}
+    --target_name {{ garak_target_name }}
+    --probes {{ garak_probes | join(',') }}
+    --generations {{ garak_generations }}
+    --report_prefix {{ results_root }}/garak/{{ garak_target_name | replace('/', '_') }}/garak
+    {{ garak_extra_args }}
+  register: garak_run
+  changed_when: true
+  failed_when: garak_run.rc not in [0]
+  # garak's exit code semantics for "vulnerabilities found" vs "scan itself
+  # failed" have shifted across versions - check `garak --help` / release
+  # notes for the version you install if this proves too strict/loose.
+
+- name: Show where results landed
+  ansible.builtin.debug:
+    msg: >
+      garak report written under
+      {{ results_root }}/garak/{{ garak_target_name | replace('/', '_') }}/
+      (file named garak.<run_id>.report.jsonl)

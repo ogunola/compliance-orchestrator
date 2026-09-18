@@ -1,0 +1,62 @@
+# Copy to hosts.yaml and fill in your real values. hosts.yaml is gitignored.
+#
+# Group purposes:
+#   caldera_control     - where the Caldera server/API is reachable from (usually 'localhost')
+#   atomic_targets       - hosts Atomic Red Team tests execute ON (Linux/macOS via SSH, Windows via WinRM)
+#   cloud_scan_control   - where Prowler runs FROM (usually 'localhost' or a bastion with cloud creds)
+#   linux_scan_targets   - Linux hosts OpenSCAP scans directly, over SSH
+#   ad_scan_host         - a domain-joined Windows host with PingCastle.exe available, over WinRM
+#   ai_redteam_control   - where garak runs FROM against your target model's API (usually 'localhost')
+
+all:
+  children:
+
+    caldera_control:
+      hosts:
+        localhost:
+          ansible_connection: local
+
+    atomic_targets:
+      children:
+        atomic_targets_linux:
+          hosts:
+            lab-linux-01:
+              ansible_host: 10.0.10.11
+              ansible_user: labadmin
+              ansible_connection: ssh
+        atomic_targets_windows:
+          hosts:
+            lab-win-01:
+              ansible_host: 10.0.10.21
+              ansible_user: LABDOMAIN\svc_ansible
+              ansible_connection: winrm
+              ansible_winrm_transport: ntlm
+              ansible_winrm_server_cert_validation: ignore
+              ansible_port: 5986
+
+    cloud_scan_control:
+      hosts:
+        localhost:
+          ansible_connection: local
+
+    linux_scan_targets:
+      hosts:
+        lab-linux-01:
+          ansible_host: 10.0.10.11
+          ansible_user: labadmin
+          ansible_connection: ssh
+
+    ad_scan_host:
+      hosts:
+        lab-win-dc-admin:
+          ansible_host: 10.0.10.5
+          ansible_user: LABDOMAIN\svc_ansible
+          ansible_connection: winrm
+          ansible_winrm_transport: ntlm
+          ansible_winrm_server_cert_validation: ignore
+          ansible_port: 5986
+
+    ai_redteam_control:
+      hosts:
+        localhost:
+          ansible_connection: local

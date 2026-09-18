@@ -1,0 +1,73 @@
+---
+# Drives a MITRE ATT&CK adversary emulation operation via Caldera's REST API
+# and pulls the resulting report back to the control node for the Python
+# aggregator to parse. Runs delegate_to: localhost (Caldera is reached over
+# HTTP, not SSH) - see playbooks/run_caldera.yml.
+
+- name: Ensure local results directory exists
+  ansible.builtin.file:
+    path: "{{ results_root }}/caldera"
+    state: directory
+    mode: "0755"
+
+- name: Start Caldera operation
+  ansible.builtin.uri:
+    url: "{{ caldera_url }}/api/v2/operations"
+    method: POST
+    headers:
+      KEY: "{{ caldera_api_key }}"
+    body_format: json
+    validate_certs: "{{ caldera_verify_ssl }}"
+    body:
+      name: "{{ caldera_operation_name }}-{{ ansible_date_time.epoch }}"
+      adversary:
+        adversary_id: "{{ caldera_adversary_id }}"
+      group: "{{ caldera_group }}"
+      planner:
+        id: "{{ caldera_planner }}"
+      state: running
+      autonomous: 1
+      obfuscator: "plain-text"
+    status_code: [200, 201]
+  register: caldera_op
+
+- name: Capture operation id
+  ansible.builtin.set_fact:
+    caldera_operation_id: "{{ caldera_op.json.id }}"
+
+- name: Poll operation until finished
+  ansible.builtin.uri:
+    url: "{{ caldera_url }}/api/v2/operations/{{ caldera_operation_id }}"
+    method: GET
+    headers:
+      KEY: "{{ caldera_api_key }}"
+    validate_certs: "{{ caldera_verify_ssl }}"
+    status_code: [200]
+  register: caldera_status
+  until: caldera_status.json.state == "finished"
+  retries: "{{ (caldera_poll_timeout_sec / caldera_poll_interval_sec) | int }}"
+  delay: "{{ caldera_poll_interval_sec }}"
+
+- name: Pull operation report (links, techniques, outcomes)
+  ansible.builtin.uri:
+    url: "{{ caldera_url }}/api/v2/operations/{{ caldera_operation_id }}/report"
+    method: POST
+    headers:
+      KEY: "{{ caldera_api_key }}"
+    validate_certs: "{{ caldera_verify_ssl }}"
+    body_format: json
+    body: {}
+    status_code: [200]
+  register: caldera_report
+
+- name: Save raw Caldera report locally for the Python parser
+  ansible.builtin.copy:
+    content: "{{ caldera_report.json | to_nice_json }}"
+    dest: "{{ results_root }}/caldera/operation-{{ caldera_operation_id }}.json"
+    mode: "0644"
+
+- name: Show quick summary
+  ansible.builtin.debug:
+    msg: >
+      Caldera operation {{ caldera_operation_id }} finished.
+      Report saved to {{ results_root }}/caldera/operation-{{ caldera_operation_id }}.json

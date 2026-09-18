@@ -1,0 +1,45 @@
+---
+# Runs an OpenSCAP evaluation directly on each Linux target host (SSH +
+# become) against a CIS (or other SCAP Security Guide) profile, then fetches
+# the ARF/XCCDF results.xml back to the control node.
+
+- name: Ensure OpenSCAP + SCAP Security Guide content are installed
+  ansible.builtin.package:
+    name: "{{ oscap_packages }}"
+    state: present
+  become: true
+
+- name: Ensure remote results directory exists
+  ansible.builtin.file:
+    path: "/tmp/ansible_results/openscap"
+    state: directory
+    mode: "0755"
+  become: true
+
+- name: Run OpenSCAP xccdf evaluation
+  ansible.builtin.command: >
+    oscap xccdf eval
+    --profile {{ oscap_profile }}
+    --results /tmp/ansible_results/openscap/results-{{ inventory_hostname }}.xml
+    --report /tmp/ansible_results/openscap/report-{{ inventory_hostname }}.html
+    {{ oscap_datastream }}
+  become: true
+  register: oscap_run
+  changed_when: true
+  # oscap exits 2 when the scan ran fine but one or more rules failed -
+  # that is an expected outcome, not an Ansible task failure.
+  failed_when: oscap_run.rc not in [0, 2]
+
+- name: Fetch results.xml back to control node
+  ansible.builtin.fetch:
+    src: "/tmp/ansible_results/openscap/results-{{ inventory_hostname }}.xml"
+    dest: "{{ results_root }}/openscap/{{ inventory_hostname }}/results.xml"
+    flat: true
+  become: true
+
+- name: Fetch human-readable HTML report back to control node
+  ansible.builtin.fetch:
+    src: "/tmp/ansible_results/openscap/report-{{ inventory_hostname }}.html"
+    dest: "{{ results_root }}/openscap/{{ inventory_hostname }}/report.html"
+    flat: true
+  become: true

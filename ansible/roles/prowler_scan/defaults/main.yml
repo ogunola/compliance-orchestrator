@@ -1,0 +1,3 @@
+---
+prowler_output_formats: "json-ocsf,csv"
+prowler_extra_args: ""

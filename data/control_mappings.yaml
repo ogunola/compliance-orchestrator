@@ -1,0 +1,138 @@
+# control_mappings.yaml
+#
+# This file is now the CURATED OVERLAY only - Zero Trust pillar tags and
+# ISO 27001 Annex A references, neither of which has a free structured
+# dataset available to build from automatically (see data/sources/SOURCES.md
+# for why). It is merged at load time (orchestrator/aggregator.py
+# load_mappings()) on top of the auto-generated ATT&CK -> NIST 800-53 -> CIS
+# Controls crosswalk in data/attack_crosswalk.generated.json, which covers
+# 470 ATT&CK techniques/sub-techniques - run `python3 data/build_crosswalk.py`
+# to regenerate that file after updating the sources.
+#
+# This overlay currently covers ~20 techniques as a representative starter
+# set for Zero Trust pillar tagging and ISO mapping. Extending pillar/ISO
+# coverage to more of the 470 mapped techniques is ongoing curation work,
+# not something this file blocks you from doing incrementally - any
+# technique without an entry here just won't show up in the Zero Trust
+# pillar or ISO 27001 views (it still fully participates in the NIST/CIS
+# views, which come from the generated file regardless of this overlay).
+
+zero_trust_pillars:
+  identity:
+    name: "Identity"
+    description: "Users, service accounts, and their authentication/authorization"
+  devices:
+    name: "Devices"
+    description: "Endpoint and workload health, patching, configuration"
+  networks:
+    name: "Networks"
+    description: "Segmentation, encryption in transit, east-west traffic control"
+  applications_workloads:
+    name: "Applications & Workloads"
+    description: "App-level access control, secure SDLC, workload identity"
+  data:
+    name: "Data"
+    description: "Classification, encryption at rest, DLP, access governance"
+  visibility_analytics:
+    name: "Visibility & Analytics"
+    description: "Logging, detection coverage, telemetry quality"
+  automation_orchestration:
+    name: "Automation & Orchestration"
+    description: "Automated response, policy-as-code, orchestrated remediation"
+  governance:
+    name: "Governance"
+    description: "Policy, risk management, and compliance oversight of the above"
+
+overlay:
+  - attack_technique: T1078
+    iso_27001_annex_a: ["A.5.15", "A.5.16", "A.8.2"]
+    zt_pillar: identity
+
+  - attack_technique: T1098
+    iso_27001_annex_a: ["A.5.16", "A.5.18"]
+    zt_pillar: identity
+
+  - attack_technique: T1110
+    iso_27001_annex_a: ["A.8.5"]
+    zt_pillar: identity
+
+  - attack_technique: T1136
+    iso_27001_annex_a: ["A.5.16"]
+    zt_pillar: identity
+
+  - attack_technique: T1021
+    iso_27001_annex_a: ["A.8.20", "A.8.22"]
+    zt_pillar: networks
+
+  - attack_technique: T1046
+    iso_27001_annex_a: ["A.8.20"]
+    zt_pillar: networks
+
+  - attack_technique: T1210
+    iso_27001_annex_a: ["A.8.8", "A.8.20"]
+    zt_pillar: networks
+
+  - attack_technique: T1059
+    iso_27001_annex_a: ["A.8.9", "A.8.16"]
+    zt_pillar: devices
+
+  - attack_technique: T1053
+    iso_27001_annex_a: ["A.8.16"]
+    zt_pillar: devices
+
+  - attack_technique: T1562
+    iso_27001_annex_a: ["A.8.16"]
+    zt_pillar: visibility_analytics
+
+  - attack_technique: T1070
+    iso_27001_annex_a: ["A.8.15"]
+    zt_pillar: visibility_analytics
+
+  - attack_technique: T1552
+    iso_27001_annex_a: ["A.8.24"]
+    zt_pillar: data
+
+  - attack_technique: T1486
+    iso_27001_annex_a: ["A.8.13"]
+    zt_pillar: data
+
+  - attack_technique: T1005
+    iso_27001_annex_a: ["A.8.24"]
+    zt_pillar: data
+
+  - attack_technique: T1195
+    iso_27001_annex_a: ["A.5.19", "A.5.20", "A.5.21"]
+    zt_pillar: applications_workloads
+
+  - attack_technique: T1190
+    iso_27001_annex_a: ["A.8.8", "A.8.9", "A.8.26"]
+    zt_pillar: applications_workloads
+
+  - attack_technique: T1611
+    iso_27001_annex_a: ["A.8.9"]
+    zt_pillar: applications_workloads
+
+  - attack_technique: T1518
+    iso_27001_annex_a: ["A.8.9"]
+    zt_pillar: devices
+
+  - attack_technique: T1069
+    iso_27001_annex_a: ["A.5.18"]
+    zt_pillar: identity
+
+  - attack_technique: T1484
+    iso_27001_annex_a: ["A.5.16", "A.8.9"]
+    zt_pillar: governance
+
+# Tool-source hints: which tool(s) typically surface evidence for each pillar.
+# Used by report.py to explain *why* a pillar's coverage looks the way it does,
+# and to flag pillars no configured tool actually covers yet.
+pillar_tool_coverage:
+  identity: [pingcastle, prowler, caldera]
+  devices: [openscap, atomic, caldera]
+  networks: [caldera, atomic, prowler]
+  applications_workloads: [prowler, openscap]
+  data: [prowler, openscap]
+  visibility_analytics: [caldera, atomic]
+  automation_orchestration: []   # no configured tool yet - known gap, see README
+  governance: []                 # largely GRC-platform / documentation-driven, see README

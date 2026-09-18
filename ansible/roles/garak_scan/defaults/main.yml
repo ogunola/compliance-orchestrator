@@ -1,0 +1,13 @@
+---
+# --target_type/--target_name are the current flag names (--model_type/
+# --model_name still work but garak deprecated them as of 0.13.1.pre1).
+garak_target_type: "openai.OpenAICompatible"   # any generator garak supports - see `garak --list_generators`
+garak_target_name: "CHANGE_ME"                  # model/deployment name your target endpoint expects
+garak_probes:
+  - dan
+  - promptinject
+  - leakreplay
+  - packagehallucination
+  - encoding
+garak_generations: 5                           # prompts per probe test case - garak's own default
+garak_extra_args: ""

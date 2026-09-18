@@ -1,0 +1,61 @@
+---
+# Runs Atomic Red Team tests on a target and fetches the transcript back.
+# Windows targets use Invoke-AtomicRedTeam (PowerShell) over WinRM.
+# Linux/macOS targets use the atomic-operator Python package over SSH
+# (set atomic_runner: atomic_operator for those hosts in inventory/group_vars).
+#
+# NOTE: exact Invoke-AtomicRedTeam / atomic-operator CLI flags vary by
+# version - check the installed module's own docs/help before relying on
+# this in a real run, and adjust the command lines below if they've changed.
+
+- name: (Windows) Ensure results dir exists on target
+  ansible.windows.win_file:
+    path: "C:\\ansible_results\\atomic"
+    state: directory
+  when: ansible_connection == 'winrm'
+
+- name: (Windows) Run Invoke-AtomicRedTeam for each technique
+  ansible.windows.win_shell: >
+    Import-Module "{{ atomic_redteam_repo_path_windows }}\\invoke-atomicredteam\\Invoke-AtomicRedTeam.psd1";
+    Invoke-AtomicTest {{ item }} -Confirm:$false
+      *> C:\ansible_results\atomic\{{ item }}.log
+  loop: "{{ atomic_techniques }}"
+  when: ansible_connection == 'winrm' and atomic_runner == 'powershell'
+  register: atomic_win_results
+  ignore_errors: true   # a single failing/unsupported technique shouldn't abort the whole run
+
+- name: (Windows) Fetch technique logs back to control node
+  ansible.builtin.fetch:
+    src: "C:\\ansible_results\\atomic\\{{ item }}.log"
+    dest: "{{ results_root }}/atomic/{{ inventory_hostname }}/{{ item }}.log"
+    flat: true
+  loop: "{{ atomic_techniques }}"
+  when: ansible_connection == 'winrm' and atomic_runner == 'powershell'
+  ignore_errors: true
+
+- name: (Linux/macOS) Ensure results dir exists on target
+  ansible.builtin.file:
+    path: "/tmp/ansible_results/atomic"
+    state: directory
+    mode: "0755"
+  when: ansible_connection == 'ssh' and atomic_runner == 'atomic_operator'
+
+- name: (Linux/macOS) Run atomic-operator for each technique
+  ansible.builtin.shell: >
+    atomic-operator run --techniques {{ item }} --check-prereqs
+      > /tmp/ansible_results/atomic/{{ item }}.log 2>&1
+  args:
+    executable: /bin/bash
+  loop: "{{ atomic_techniques }}"
+  when: ansible_connection == 'ssh' and atomic_runner == 'atomic_operator'
+  register: atomic_linux_results
+  ignore_errors: true
+
+- name: (Linux/macOS) Fetch technique logs back to control node
+  ansible.builtin.fetch:
+    src: "/tmp/ansible_results/atomic/{{ item }}.log"
+    dest: "{{ results_root }}/atomic/{{ inventory_hostname }}/{{ item }}.log"
+    flat: true
+  loop: "{{ atomic_techniques }}"
+  when: ansible_connection == 'ssh' and atomic_runner == 'atomic_operator'
+  ignore_errors: true

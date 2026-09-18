@@ -1,0 +1,4 @@
+---
+caldera_operation_name: "compliance-orchestrator-run"
+caldera_planner: "atomic"
+caldera_verify_ssl: false

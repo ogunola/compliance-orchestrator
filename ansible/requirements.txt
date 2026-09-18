@@ -1,0 +1,7 @@
+# Packages needed on the Ansible CONTROL NODE (the machine running
+# ansible-playbook) - not on the managed targets. Target-side tool
+# installation is handled inside each role.
+
+ansible-core>=2.16
+prowler>=4.0          # only needed here if prowler_scan role runs with connection: local
+requests>=2.31

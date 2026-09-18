@@ -1,0 +1,23 @@
+---
+# Master playbook: runs every tool against its target group.
+#
+# Run everything:
+#   ansible-playbook playbooks/site.yml
+#
+# Run just the tools that cover a given framework/area of strength:
+#   ansible-playbook playbooks/site.yml --tags attack        # Caldera + Atomic
+#   ansible-playbook playbooks/site.yml --tags cis            # Prowler + OpenSCAP
+#   ansible-playbook playbooks/site.yml --tags zerotrust       # PingCastle (+ tag identity findings from others)
+#   ansible-playbook playbooks/site.yml --tags prowler,openscap
+#   ansible-playbook playbooks/site.yml --tags ai            # garak only (see run_garak.yml)
+#
+# After this completes, run the Python aggregator from the project root:
+#   python main.py aggregate --results-dir results --out report
+#   python main.py aggregate-ai --results-dir results --out report/ai   # garak/OWASP - separate report, see data/ai_redteam/SOURCES.md
+
+- import_playbook: run_caldera.yml
+- import_playbook: run_atomic.yml
+- import_playbook: run_prowler.yml
+- import_playbook: run_openscap.yml
+- import_playbook: run_pingcastle.yml
+- import_playbook: run_garak.yml

@@ -1,0 +1,9 @@
+# Ansible Galaxy collections required by the roles in this project.
+# Install with: ansible-galaxy collection install -r ansible/requirements.yml
+collections:
+  - name: ansible.windows      # win_shell, win_command, win_stat - Atomic Red Team + PingCastle roles
+    version: ">=2.4.0"
+  - name: community.windows    # extra Windows helpers (win_reg_stat, etc.), optional but commonly needed
+    version: ">=2.3.0"
+  - name: ansible.posix        # synchronize module for pulling large result sets back efficiently
+    version: ">=1.5.0"

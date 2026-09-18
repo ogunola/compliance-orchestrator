@@ -1,0 +1,7 @@
+---
+- name: Run ATT&CK emulation operation via Caldera
+  hosts: caldera_control
+  gather_facts: true
+  roles:
+    - caldera_operation
+  tags: [caldera, attack]
