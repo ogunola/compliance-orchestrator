@@ -1,0 +1,9 @@
+results/
+report/
+ansible/inventory/hosts.yaml
+ansible/group_vars/all.yaml
+ansible/group_vars/*_vault.yaml
+*.retry
+__pycache__/
+*.pyc
+.pytest_cache/

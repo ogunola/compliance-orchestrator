@@ -144,8 +144,9 @@ control) are just a quick look after a run.
 
 ## GRC hand-off (Vanta)
 
-`orchestrator/connectors/vanta.py` pushes `report/summary.json` into Vanta
-as Custom Resources, so a Custom Test you author there can evaluate pass/fail
+`orchestrator/connectors/vanta.py` pushes `report/summary.json` **and**
+`report/ai/ai_summary.json` (the garak/OWASP pipeline below) into Vanta as
+Custom Resources, so a Custom Test you author there can evaluate pass/fail
 against real evidence from this pipeline instead of Vanta's built-in checks
 alone. Vanta's public API has no "push a test result" endpoint directly -
 custom compliance data flows through a predefined Custom Resource type
@@ -174,12 +175,19 @@ instead, so there's a one-time manual setup step in Vanta's UI:
      }
    }
    ```
-   Save it and note the generated **Resource ID**.
+   Save it and note the generated **Resource ID**. This one schema covers
+   both pipelines - the AI red-team resources below use the same
+   `framework`/`control_id`/`pass_count`/etc. shape, just with
+   `framework: "OWASP LLM Top 10 (2025)"` instead of an infra framework
+   name, so you don't need a second Custom Resource type in Vanta.
 3. **Author a Custom Test** against that resource type (e.g. `fail_count ==
    0`) and map it to the relevant control in Vanta's framework library
    (NIST 800-53, CIS Controls, ISO 27001, or a custom Zero Trust framework
    if you've set one up) - one test per control you want Vanta actively
    tracking, using `control_id` to pick out the right resource instance.
+   For the AI pipeline, filter on `framework == "OWASP LLM Top 10 (2025)"`
+   and `control_id == "LLM01"` (etc.) to build LLM-specific tests distinct
+   from the infra/config ones.
 
 Then push:
 
@@ -189,21 +197,43 @@ export VANTA_CLIENT_SECRET=...
 export VANTA_RESOURCE_ID=...          # from step 2
 
 python main.py push-vanta --dry-run    # preview the payload, no creds/network needed
-python main.py push-vanta              # actually push report/summary.json
+python main.py push-vanta              # pushes whichever of summary.json / ai_summary.json exist
 ```
 
+`push-vanta` reads both `report/summary.json` (`--summary`, from
+`aggregate`) and `report/ai/ai_summary.json` (`--ai-summary`, from
+`aggregate-ai`) and pushes them **together in a single call**. Either one
+can be missing - if you haven't run `aggregate-ai` yet, `push-vanta` just
+skips the AI resources and pushes the infra ones (and vice versa), printing
+a note either way; it only errors if neither file exists. They're combined
+into one call deliberately, not as two separate pushes, because of the next
+point:
+
 **Important**: Vanta's push endpoint replaces the *entire* resource set on
-every call - it's not additive. Always push the full current
-`report/summary.json` (which `aggregate` always regenerates in full), never
-a partial/manual edit of it, or you'll silently make Vanta think controls
-you omitted no longer exist. See the docstring in
-`orchestrator/connectors/vanta.py` for the full API contract (OAuth
-client_credentials, token endpoint, scopes, the exact PUT body shape) - it
-was built against Vanta's published developer docs and tested with mocked
-HTTP responses (`tests/test_vanta_connector.py`); it has not been run
-against a live Vanta tenant, so validate the Custom Resource schema and
-first push carefully with a small/test integration before wiring it into
-anything automated.
+every call - it's not additive. Pushing `summary.json` and then
+`ai_summary.json` as two separate calls under the same `resourceId` would
+make the second call erase the first's data, so `push-vanta` always builds
+resources from whichever inputs exist, merges them (see below), and sends
+one PUT. Always push the full current summary files (which `aggregate` /
+`aggregate-ai` always regenerate in full), never a partial/manual edit of
+them, or you'll silently make Vanta think controls you omitted no longer
+exist.
+
+One merge detail worth knowing: both pipelines can independently produce
+Zero Trust pillar evidence (e.g. infra tools and garak can both surface
+*Identity*-pillar findings). `merge_resources()` sums those pillars'
+pass/fail counts and unions their `source_tools` rather than letting
+whichever pipeline is listed second overwrite the other's pillar resource -
+so a pillar's coverage in Vanta reflects all evidence feeding it, not just
+one pipeline's.
+
+See the docstring in `orchestrator/connectors/vanta.py` for the full API
+contract (OAuth client_credentials, token endpoint, scopes, the exact PUT
+body shape) - it was built against Vanta's published developer docs and
+tested with mocked HTTP responses (`tests/test_vanta_connector.py`); it has
+not been run against a live Vanta tenant, so validate the Custom Resource
+schema and first push carefully with a small/test integration before wiring
+it into anything automated.
 
 ## Zero Trust: how it's handled
 
@@ -269,6 +299,9 @@ cd .. && python main.py aggregate-ai --results-dir results --out report/ai
 
 `report/ai/ai_summary.json` and `report/ai/ai_findings.csv` are separate
 files from the main `report/summary.json` - by design, not an oversight.
+`python main.py push-vanta` picks up `report/ai/ai_summary.json`
+automatically (see "GRC hand-off (Vanta)" above) alongside the main
+summary, so there's no separate AI-specific push command.
 
 ### Responsible use
 
@@ -318,13 +351,14 @@ access-restricted, not casually shared.
   column here covers only the technical controls the other four tools can
   actually speak to.
 - **Drata/Secureframe/other GRC platforms** aren't wired up - Vanta was the
-  one built in this pass. `orchestrator/connectors/` is where a second
-  connector would live; `build_resources()`-style pure functions plus a
-  thin HTTP client is the pattern to repeat.
-- **The AI red-team pipeline isn't pushed to Vanta yet** - `report/ai/ai_summary.json`
-  exists but `push_vanta` only reads `report/summary.json` today. Extending
-  it to also push an `owasp_llm_top10` resource type is straightforward
-  (same `build_resources()` pattern) if you want AI findings in Vanta too.
+  one built in this pass. They're not redundant with Vanta so much as
+  alternatives to it: all three follow the same shape (define a custom
+  resource/test schema in the platform's UI once, then push instances via
+  API), so if you're on Drata or Secureframe instead of Vanta, add a sibling
+  connector rather than trying to make Vanta's push reach a different
+  platform. `orchestrator/connectors/` is where a second connector would
+  live; `build_resources()`/`build_ai_resources()`-style pure functions plus
+  a thin HTTP client (see `vanta.py`) is the pattern to repeat.
 - **garak itself hasn't been run against a live model** in this pass - the
   parser and aggregator are verified against garak's own real report
   schema and probe tag data (see `data/ai_redteam/SOURCES.md`), but nobody
@@ -352,7 +386,7 @@ compliance-orchestrator/
 │   ├── parsers/              # one parser per tool's raw output (incl. garak_parser.py)
 │   ├── aggregator.py         # rolls findings up to frameworks + ZT pillars
 │   ├── ai_aggregator.py      # parallel rollup: garak -> OWASP LLM Top 10 + ZT pillars
-│   ├── connectors/vanta.py   # GRC hand-off: pushes summary.json to Vanta
+│   ├── connectors/vanta.py   # GRC hand-off: pushes summary.json + ai_summary.json to Vanta
 │   ├── report.py             # console tables + summary.json/findings.csv (+ ai_ variants)
 │   └── cli.py                # `aggregate`, `aggregate-ai`, `push-vanta` subcommands
 ├── main.py

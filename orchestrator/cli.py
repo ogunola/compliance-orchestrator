@@ -10,7 +10,7 @@ import click
 
 from .aggregator import aggregate, load_mappings
 from .ai_aggregator import aggregate_ai, load_owasp_mapping
-from .connectors.vanta import VantaClient, build_resources
+from .connectors.vanta import VantaClient, build_ai_resources, build_resources, merge_resources
 from .parsers import (
     parse_atomic_dir,
     parse_caldera_dir,
@@ -94,10 +94,18 @@ cli.add_command(aggregate_cmd, name="aggregate")
 @click.option(
     "--summary",
     "summary_path",
-    type=click.Path(exists=True, dir_okay=False, path_type=Path),
+    type=click.Path(dir_okay=False, path_type=Path),
     default=Path("report/summary.json"),
     show_default=True,
-    help="Output of `python main.py aggregate` to push.",
+    help="Output of `python main.py aggregate` to push. Skipped (with a note) if it doesn't exist.",
+)
+@click.option(
+    "--ai-summary",
+    "ai_summary_path",
+    type=click.Path(dir_okay=False, path_type=Path),
+    default=Path("report/ai/ai_summary.json"),
+    show_default=True,
+    help="Output of `python main.py aggregate-ai` to push alongside it. Skipped (with a note) if it doesn't exist.",
 )
 @click.option("--client-id", envvar="VANTA_CLIENT_ID", default=None, help="Or set VANTA_CLIENT_ID.")
 @click.option("--client-secret", envvar="VANTA_CLIENT_SECRET", default=None, help="Or set VANTA_CLIENT_SECRET.")
@@ -108,15 +116,48 @@ cli.add_command(aggregate_cmd, name="aggregate")
     default=False,
     help="Build and print the resources that would be pushed, without calling Vanta or needing credentials.",
 )
-def push_vanta_cmd(summary_path: Path, client_id: str | None, client_secret: str | None, resource_id: str | None, dry_run: bool) -> None:
-    """Push a completed aggregate() summary to Vanta as Custom Resources.
+def push_vanta_cmd(
+    summary_path: Path,
+    ai_summary_path: Path,
+    client_id: str | None,
+    client_secret: str | None,
+    resource_id: str | None,
+    dry_run: bool,
+) -> None:
+    """Push completed aggregate()/aggregate_ai() summaries to Vanta as Custom Resources.
+
+    Pushes whichever of --summary / --ai-summary actually exist, combined
+    into ONE call. That matters here, not just for convenience: Vanta's push
+    REPLACES the entire resource set every call (see the module docstring in
+    orchestrator/connectors/vanta.py), so pushing the two summaries in
+    separate calls under the same resource-id would make the second call
+    erase the first's data. Zero Trust pillar resources that both pipelines
+    can produce (e.g. "identity") are merged - summed counts, unioned
+    source tools - rather than one overwriting the other.
 
     Requires a one-time Custom Resource + Custom Test set up in the Vanta UI
     first - see README.md "GRC hand-off (Vanta)". --dry-run works with no
     credentials and no network call, useful for checking the payload shape.
     """
-    aggregate_data = json.loads(summary_path.read_text())
-    resources = build_resources(aggregate_data)
+    resources: list = []
+
+    if summary_path.exists():
+        resources += build_resources(json.loads(summary_path.read_text()))
+    else:
+        click.echo(f"Note: {summary_path} not found - skipping the main compliance resources.")
+
+    if ai_summary_path.exists():
+        resources += build_ai_resources(json.loads(ai_summary_path.read_text()))
+    else:
+        click.echo(f"Note: {ai_summary_path} not found - skipping the AI red-team resources.")
+
+    if not resources:
+        raise click.UsageError(
+            f"Neither {summary_path} nor {ai_summary_path} exists - nothing to push. "
+            f"Run `aggregate` and/or `aggregate-ai` first."
+        )
+
+    resources = merge_resources(resources, [])  # merges any zt_pillar overlap between the two builds above
 
     if dry_run:
         click.echo(json.dumps(resources, indent=2))
