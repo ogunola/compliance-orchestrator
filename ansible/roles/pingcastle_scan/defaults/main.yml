@@ -1,2 +1,8 @@
 ---
 pingcastle_exe_path: "C:\\Tools\\PingCastle\\PingCastle.exe"
+# --- PingCastle (AD / Zero Trust identity pillar) ---
+pingcastle_exe_path: "C:\\Tools\\PingCastle\\PingCastle.exe"
+ansible_password: Appleman123!@#
+results_root: "{{ playbook_dir }}/../../results"   # where raw tool output lands on the CONTROL NODE
+ad_domain: "lab.lionsight"
+

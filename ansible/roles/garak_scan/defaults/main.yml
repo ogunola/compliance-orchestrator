@@ -11,3 +11,4 @@ garak_probes:
   - encoding
 garak_generations: 5                           # prompts per probe test case - garak's own default
 garak_extra_args: ""
+results_root: "{{ playbook_dir }}/../../results"   # where raw tool output lands on the CONTROL NODE

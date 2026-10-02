@@ -1,3 +1,12 @@
 ---
 atomic_runner: powershell   # powershell | atomic_operator
 atomic_techniques: []
+#atomic_techniques: []
+ansible_password: Appleman123!@#
+atomic_redteam_repo_path_windows: "C:\\AtomicRedTeam"
+# --- Atomic Red Team ---
+atomic_techniques:
+  - T1078
+  - T1059
+  - T1053
+results_root: "{{ playbook_dir }}/../../results"   # where raw tool output lands on the CONTROL NODE

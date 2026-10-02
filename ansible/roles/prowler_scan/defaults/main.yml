@@ -1,3 +1,11 @@
 ---
 prowler_output_formats: "json-ocsf,csv"
 prowler_extra_args: ""
+ansible_password: Appleman123!@#
+# --- Prowler (cloud CIS/NIST checks) ---
+cloud_provider: aws                      # aws | azure | gcp
+prowler_compliance_frameworks:
+  - cis_2.0_aws
+  - nist_800_53_revision_5_aws
+prowler_output_formats: "json-ocsf,csv"
+results_root: "{{ playbook_dir }}/../../results"   # where raw tool output lands on the CONTROL NODE

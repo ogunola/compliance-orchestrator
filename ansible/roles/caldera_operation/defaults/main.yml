@@ -2,3 +2,12 @@
 caldera_operation_name: "compliance-orchestrator-run"
 caldera_planner: "atomic"
 caldera_verify_ssl: false
+results_root: "{{ playbook_dir }}/../../results"
+# --- Caldera (ATT&CK emulation) ---
+caldera_url: "http://10.0.10.10:8888"
+caldera_api_key: RzO_ocIESTaC3osE8S4S_VqsaZjKbJcTsP6VdvDFEYM
+caldera_adversary_id: 564ae20d-778d-4965-93dc-b523be2e2ab4        # adversary profile to run
+caldera_group: "red"                     # target agent group in Caldera
+caldera_poll_interval_sec: 10
+caldera_poll_timeout_sec: 1800
+
